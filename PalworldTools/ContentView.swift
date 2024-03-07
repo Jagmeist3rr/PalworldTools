@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView{
+            VStack {
+                NavigationLink("Lifunk Capture Rates", destination: EffigyTool())
+                NavigationLink("TestView",destination: Testview())
+            }
+            .navigationTitle("Palworld Tools")
         }
-        .padding()
+        
     }
 }
 
