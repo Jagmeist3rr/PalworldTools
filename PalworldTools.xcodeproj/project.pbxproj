@@ -13,6 +13,7 @@
 		8C82BF922B9A5E0F00D8ADFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C82BF912B9A5E0F00D8ADFF /* Preview Assets.xcassets */; };
 		8C82BF992B9A611F00D8ADFF /* EffigyTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */; };
 		8C82BF9B2B9A647900D8ADFF /* Testview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF9A2B9A647900D8ADFF /* Testview.swift */; };
+		8C82BF9D2B9A90BC00D8ADFF /* SkillsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		8C82BF912B9A5E0F00D8ADFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffigyTool.swift; sourceTree = "<group>"; };
 		8C82BF9A2B9A647900D8ADFF /* Testview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testview.swift; sourceTree = "<group>"; };
+		8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */,
 				8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */,
 				8C82BF9A2B9A647900D8ADFF /* Testview.swift */,
+				8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */,
 				8C82BF8E2B9A5E0F00D8ADFF /* Assets.xcassets */,
 				8C82BF902B9A5E0F00D8ADFF /* Preview Content */,
 			);
@@ -147,6 +150,7 @@
 				8C82BF992B9A611F00D8ADFF /* EffigyTool.swift in Sources */,
 				8C82BF8D2B9A5E0D00D8ADFF /* ContentView.swift in Sources */,
 				8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */,
+				8C82BF9D2B9A90BC00D8ADFF /* SkillsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

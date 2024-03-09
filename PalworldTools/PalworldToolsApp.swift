@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct PalworldToolsApp: App {
+    @StateObject var skillsManager = SkillsManager() // Initialize SkillsManager as a state object
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(skillsManager) // Provide skillsManager as an environment object
         }
     }
 }

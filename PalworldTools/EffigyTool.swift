@@ -15,12 +15,13 @@ struct EffigyTool: View {
         VStack {
             Text("This is the Detail View")
                 .padding()
-            
-            Button("Go Back") {
-                presentationMode.wrappedValue.dismiss()
-            }
-            .padding()
         }
         .navigationTitle("Effigy Tools")
+    }
+}
+
+struct Effigy_Previews: PreviewProvider {
+    static var previews: some View {
+        EffigyTool()
     }
 }
