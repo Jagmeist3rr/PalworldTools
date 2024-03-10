@@ -27,9 +27,11 @@ struct PalSkills: View {
                         HStack{
                             Text(skill.name)
                                 .font(.headline)
+                                .frame(width: 115,alignment: .leading)
                             skill.rank
                                 .resizable()
                                 .frame(width: 20,height: 20)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
                             
                         }
                         if let description = skill.description{
@@ -65,7 +67,7 @@ struct PalSkills: View {
                         HStack{
                             if let movement = skill.movement {
                                 Text("Movement:")
-                                    .frame(width: 85,alignment: .leading)
+                                    .frame(width: 80,alignment: .leading)
                                 Text("\(movement)%")
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                             }
@@ -83,7 +85,7 @@ struct PalSkills: View {
                             if let sanityDrain = skill.sanityDrain {
                                 Text("Sanity Drain:")
                                     .frame(width: CGFloat   (labelWidth),alignment: .leading)
-                                    .frame(width: 85,alignment: .leading)
+                                    .frame(width: 80,alignment: .leading)
                                 Text("\(sanityDrain)%")
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                             }
@@ -92,7 +94,7 @@ struct PalSkills: View {
                             if let hungerDrain = skill.hungerDrain {
                                 Text("Hunger Drain:")
                                     .frame(width: CGFloat   (labelWidth),alignment: .leading)
-                                    .frame(width: 87,alignment: .leading)
+                                    .frame(width: 80,alignment: .leading)
                                 Text("\(hungerDrain)%")
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                             }
