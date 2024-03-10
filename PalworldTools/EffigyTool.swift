@@ -15,8 +15,11 @@ struct EffigyTool: View {
         VStack {
             Text("This is the Detail View")
                 .padding()
+            Image("R3pos")
+            Text("Test")
         }
         .navigationTitle("Effigy Tools")
+        
     }
 }
 
