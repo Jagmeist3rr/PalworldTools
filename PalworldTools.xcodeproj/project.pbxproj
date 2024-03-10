@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8C3B8B3F2B9D658E002466C1 /* PalSpheres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */; };
 		8C3B8B412B9D689C002466C1 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B8B402B9D689C002466C1 /* Materials.swift */; };
+		8C50F7512B9E29AF00B30884 /* ItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7502B9E29AF00B30884 /* ItemsView.swift */; };
+		8C50F7532B9E2ABE00B30884 /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */; };
 		8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF8A2B9A5E0D00D8ADFF /* PalworldToolsApp.swift */; };
 		8C82BF8D2B9A5E0D00D8ADFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */; };
 		8C82BF8F2B9A5E0F00D8ADFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C82BF8E2B9A5E0F00D8ADFF /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalSpheres.swift; sourceTree = "<group>"; };
 		8C3B8B402B9D689C002466C1 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
+		8C50F7502B9E29AF00B30884 /* ItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsView.swift; sourceTree = "<group>"; };
+		8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
 		8C82BF872B9A5E0D00D8ADFF /* PalworldTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PalworldTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C82BF8A2B9A5E0D00D8ADFF /* PalworldToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalworldToolsApp.swift; sourceTree = "<group>"; };
 		8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */,
 				8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */,
 				8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */,
+				8C50F7502B9E29AF00B30884 /* ItemsView.swift */,
+				8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */,
 				8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */,
 				8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */,
 				8C82BF8E2B9A5E0F00D8ADFF /* Assets.xcassets */,
@@ -155,10 +161,12 @@
 				8C3B8B3F2B9D658E002466C1 /* PalSpheres.swift in Sources */,
 				8C82BF9B2B9A647900D8ADFF /* PalSkills.swift in Sources */,
 				8C82BF992B9A611F00D8ADFF /* EffigyTool.swift in Sources */,
+				8C50F7532B9E2ABE00B30884 /* MaterialsView.swift in Sources */,
 				8C3B8B412B9D689C002466C1 /* Materials.swift in Sources */,
 				8C82BF8D2B9A5E0D00D8ADFF /* ContentView.swift in Sources */,
 				8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */,
 				8C82BF9D2B9A90BC00D8ADFF /* SkillsList.swift in Sources */,
+				8C50F7512B9E29AF00B30884 /* ItemsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +308,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -329,6 +338,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

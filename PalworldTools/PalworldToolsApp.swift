@@ -15,6 +15,8 @@ struct PalworldToolsApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(skillsManager) // Provide skillsManager as an environment object
+                .environmentObject(MaterialsListManager())
+                .environmentObject(MaterialsManager())
         }
     }
 }

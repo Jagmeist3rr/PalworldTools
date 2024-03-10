@@ -13,6 +13,7 @@ struct ContentView: View {
             VStack {
                 NavigationLink("Lifunk Capture Rates", destination: EffigyTool())
                 NavigationLink("Pal Skills",destination: PalSkills())
+                NavigationLink("Items", destination: ItemsView())
             }
             .navigationTitle("Palworld Tools")
         }
