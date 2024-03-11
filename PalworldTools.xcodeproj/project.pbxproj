@@ -11,7 +11,6 @@
 		8C3B8B412B9D689C002466C1 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B8B402B9D689C002466C1 /* Materials.swift */; };
 		8C50F7512B9E29AF00B30884 /* ItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7502B9E29AF00B30884 /* ItemsView.swift */; };
 		8C50F7532B9E2ABE00B30884 /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */; };
-		8C50F7592B9F5F3200B30884 /* MaterialsViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7582B9F5F3200B30884 /* MaterialsViewTest.swift */; };
 		8C50F75C2B9F615A00B30884 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 8C50F75B2B9F615A00B30884 /* SwiftUIX */; };
 		8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF8A2B9A5E0D00D8ADFF /* PalworldToolsApp.swift */; };
 		8C82BF8D2B9A5E0D00D8ADFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */; };
@@ -27,7 +26,6 @@
 		8C3B8B402B9D689C002466C1 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
 		8C50F7502B9E29AF00B30884 /* ItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsView.swift; sourceTree = "<group>"; };
 		8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
-		8C50F7582B9F5F3200B30884 /* MaterialsViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewTest.swift; sourceTree = "<group>"; };
 		8C82BF872B9A5E0D00D8ADFF /* PalworldTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PalworldTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C82BF8A2B9A5E0D00D8ADFF /* PalworldToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalworldToolsApp.swift; sourceTree = "<group>"; };
 		8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 		8C82BF7E2B9A5E0D00D8ADFF = {
 			isa = PBXGroup;
 			children = (
-				8C50F7582B9F5F3200B30884 /* MaterialsViewTest.swift */,
 				8C82BF892B9A5E0D00D8ADFF /* PalworldTools */,
 				8C82BF882B9A5E0D00D8ADFF /* Products */,
 			);
@@ -193,7 +190,6 @@
 				8C3B8B412B9D689C002466C1 /* Materials.swift in Sources */,
 				8C82BF8D2B9A5E0D00D8ADFF /* ContentView.swift in Sources */,
 				8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */,
-				8C50F7592B9F5F3200B30884 /* MaterialsViewTest.swift in Sources */,
 				8C82BF9D2B9A90BC00D8ADFF /* SkillsList.swift in Sources */,
 				8C50F7512B9E29AF00B30884 /* ItemsView.swift in Sources */,
 			);

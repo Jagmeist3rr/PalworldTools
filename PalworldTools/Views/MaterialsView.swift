@@ -12,43 +12,64 @@ struct DetailView: View {
     @EnvironmentObject var materialsListManager: MaterialsListManager
     @Environment(\.presentationMode) var presentationMode
 
+    
     var item: materialsList
     
     var body: some View {
-        GeometryReader { geometry in
-            let roundedweight = String(format: "%.2f", item.fullPage.weight)
-            
+        let roundedweight = String(format: "%.2f", item.fullPage.weight)
+        
+        HStack{
+            item.image
+                .resizable()
+                .frame(width: 50,height: 50)
+                //.frame(maxWidth: .infinity, alignment: .leading)
+            Text(item.name)
+        }
+        .frame(width: 300, height: 50, alignment: .center)
+        .offset(CGSize(width: 0, height: 0))
+        
+        VStack{
             VStack(alignment: .leading) {
-                HStack {
-                    item.image
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Weight:")
                     Spacer()
-                    Text(item.name)
-                        .font(.title2)
+                    Text(roundedweight)
                 }
-                Spacer()
-                Text("Weight: \(roundedweight)")
-                Text("Buy Price: \(item.fullPage.buyPrice)")
-                Text("Sell Price: \(item.fullPage.sellPrice)")
-                Spacer()
-            }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.black.opacity(0.1))
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .frame(width: geometry.size.width, height: geometry.size.height) // Adjust to cover entire screen
-            .overlay(
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                        .padding()
-                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Buy Price:")
+                    Spacer()
 
-                , alignment: .topTrailing
-            )
+                    Text("\(item.fullPage.buyPrice)")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Sell Price:")
+                    Spacer()
+                    Text("\(item.fullPage.sellPrice)")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(width: 120, height: 70)
+            //.offset(CGSize(width: -10, height: -40))
+            .font(.system(size: 15))
+
+            VStack{
+                Text("How to obtain:")
+
+                ScrollView(.vertical) {
+                    ForEach(item.fullPage.sources, id: \.self) { item in
+                        Text(item)
+                    }
+                }
+                .frame(height: 60) // Fixed height for the list
+
+            }
+            .frame(width: 150, height: 125)
+            .font(.system(size: 15))
+
         }
     }
 }
@@ -63,32 +84,50 @@ struct MaterialsView: View {
     @EnvironmentObject var materialsListManger: MaterialsListManager//
     @State private var selectedItem: materialsList? // Track selected item
     @State private var isDetailViewActive = false // Control navigation
+    @State private var isShowingPopup = false
     
     var body: some View {
+        ZStack {
             VStack {
-                List(materialsListManger.matslistmanstruct, id: \.name) { material in
-                    Button(action: {
-                        self.selectedItem = material
-                        self.isDetailViewActive = true
-                    }) {
-                        HStack {
-                            material.image
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                            Text(material.name)
+                    List(materialsListManger.matslistmanstruct, id: \.name) { material in
+                        Button(action: {
+                            self.selectedItem = material
+                            self.isDetailViewActive = true
+                            isShowingPopup = true
+                        }) {
+                            HStack {
+                                material.image
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                Text(material.name)
+                            }
                         }
                     }
                 }
-            }
-            .navigationTitle("Materials")
-            .sheet(isPresented: $isDetailViewActive) {
-                if let selectedItem = self.selectedItem {
-                    DetailView(item: selectedItem)
+            // Popup view
+            if isShowingPopup {
+                GeometryReader { geometry in
+                    Color.black.opacity(0.3)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            isShowingPopup = false
+                        }
+                    
+                    VStack {
+                        
+                        DetailView(item: selectedItem!)
+
+                    }
+                    
+                    .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.4)
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .offset(x: geometry.size.height * 0.05, y: geometry.size.height * 0.25)
                 }
-                else{
-                    Text("Error")
-                }
+                
             }
+            
+        }
     }
 }
 
