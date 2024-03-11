@@ -8,18 +8,52 @@
 import Foundation
 import SwiftUI
 
-struct DetailView: View{
-    @EnvironmentObject var materialsListManger: MaterialsListManager//
+struct DetailView: View {
+    @EnvironmentObject var materialsListManager: MaterialsListManager
+    @Environment(\.presentationMode) var presentationMode
 
     var item: materialsList
-    var body: some View{
-        VStack{
-            Text(item.name)
-            item.image
+    
+    var body: some View {
+        GeometryReader { geometry in
+            let roundedweight = String(format: "%.2f", item.fullPage.weight)
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    item.image
+                    Spacer()
+                    Text(item.name)
+                        .font(.title2)
+                }
+                Spacer()
+                Text("Weight: \(roundedweight)")
+                Text("Buy Price: \(item.fullPage.buyPrice)")
+                Text("Sell Price: \(item.fullPage.sellPrice)")
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.black.opacity(0.1))
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .frame(width: geometry.size.width, height: geometry.size.height) // Adjust to cover entire screen
+            .overlay(
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                        .padding()
+                }
+
+                , alignment: .topTrailing
+            )
         }
-        
     }
 }
+
+
 
 
 
