@@ -13,9 +13,15 @@ struct DetailView: View{
 
     var item: materialsList
     var body: some View{
-        Text("Test for \(item.name)")
+        VStack{
+            Text(item.name)
+            item.image
+        }
+        
     }
 }
+
+
 
 struct MaterialsView: View {
     @Environment(\.presentationMode) var presentationMode

@@ -46,6 +46,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C8023F42B9E6D5200380130 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */,
+				8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */,
+				8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */,
+				8C50F7502B9E29AF00B30884 /* ItemsView.swift */,
+				8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8C8023F52B9E6D5B00380130 /* Brains */ = {
+			isa = PBXGroup;
+			children = (
+				8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */,
+				8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */,
+				8C3B8B402B9D689C002466C1 /* Materials.swift */,
+			);
+			path = Brains;
+			sourceTree = "<group>";
+		};
 		8C82BF7E2B9A5E0D00D8ADFF = {
 			isa = PBXGroup;
 			children = (
@@ -65,17 +87,11 @@
 		8C82BF892B9A5E0D00D8ADFF /* PalworldTools */ = {
 			isa = PBXGroup;
 			children = (
-				8C3B8B402B9D689C002466C1 /* Materials.swift */,
 				8C82BF8A2B9A5E0D00D8ADFF /* PalworldToolsApp.swift */,
-				8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */,
-				8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */,
-				8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */,
-				8C50F7502B9E29AF00B30884 /* ItemsView.swift */,
-				8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */,
-				8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */,
-				8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */,
 				8C82BF8E2B9A5E0F00D8ADFF /* Assets.xcassets */,
 				8C82BF902B9A5E0F00D8ADFF /* Preview Content */,
+				8C8023F42B9E6D5200380130 /* Views */,
+				8C8023F52B9E6D5B00380130 /* Brains */,
 			);
 			path = PalworldTools;
 			sourceTree = "<group>";
