@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		8C3B8B3F2B9D658E002466C1 /* PalSpheres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */; };
 		8C3B8B412B9D689C002466C1 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B8B402B9D689C002466C1 /* Materials.swift */; };
-		8C50F7512B9E29AF00B30884 /* ItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7502B9E29AF00B30884 /* ItemsView.swift */; };
-		8C50F7532B9E2ABE00B30884 /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */; };
-		8C50F75C2B9F615A00B30884 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 8C50F75B2B9F615A00B30884 /* SwiftUIX */; };
 		8C50F75E2B9F8ECE00B30884 /* Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F75D2B9F8ECE00B30884 /* Weapons.swift */; };
 		8C50F7602B9F8EE600B30884 /* WeaponsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50F75F2B9F8EE600B30884 /* WeaponsView.swift */; };
 		8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF8A2B9A5E0D00D8ADFF /* PalworldToolsApp.swift */; };
@@ -21,13 +18,14 @@
 		8C82BF992B9A611F00D8ADFF /* EffigyTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */; };
 		8C82BF9B2B9A647900D8ADFF /* PalSkills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */; };
 		8C82BF9D2B9A90BC00D8ADFF /* SkillsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */; };
+		8CDC1B132B9FF01100C82514 /* MatViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B102B9FF01100C82514 /* MatViews.swift */; };
+		8CDC1B142B9FF01100C82514 /* ItemsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B112B9FF01100C82514 /* ItemsMenu.swift */; };
+		8CDC1B152B9FF01100C82514 /* MatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B122B9FF01100C82514 /* MatListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalSpheres.swift; sourceTree = "<group>"; };
 		8C3B8B402B9D689C002466C1 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
-		8C50F7502B9E29AF00B30884 /* ItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsView.swift; sourceTree = "<group>"; };
-		8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
 		8C50F75D2B9F8ECE00B30884 /* Weapons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapons.swift; sourceTree = "<group>"; };
 		8C50F75F2B9F8EE600B30884 /* WeaponsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponsView.swift; sourceTree = "<group>"; };
 		8C82BF872B9A5E0D00D8ADFF /* PalworldTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PalworldTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +36,9 @@
 		8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffigyTool.swift; sourceTree = "<group>"; };
 		8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalSkills.swift; sourceTree = "<group>"; };
 		8C82BF9C2B9A90BC00D8ADFF /* SkillsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsList.swift; sourceTree = "<group>"; };
+		8CDC1B102B9FF01100C82514 /* MatViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatViews.swift; sourceTree = "<group>"; };
+		8CDC1B112B9FF01100C82514 /* ItemsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsMenu.swift; sourceTree = "<group>"; };
+		8CDC1B122B9FF01100C82514 /* MatListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C50F75C2B9F615A00B30884 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,10 +55,11 @@
 		8C8023F42B9E6D5200380130 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CDC1B112B9FF01100C82514 /* ItemsMenu.swift */,
+				8CDC1B122B9FF01100C82514 /* MatListView.swift */,
+				8CDC1B102B9FF01100C82514 /* MatViews.swift */,
 				8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */,
 				8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */,
-				8C50F7522B9E2ABE00B30884 /* MaterialsView.swift */,
-				8C50F7502B9E29AF00B30884 /* ItemsView.swift */,
 				8C50F75F2B9F8EE600B30884 /* WeaponsView.swift */,
 				8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */,
 			);
@@ -130,7 +131,6 @@
 			);
 			name = PalworldTools;
 			packageProductDependencies = (
-				8C50F75B2B9F615A00B30884 /* SwiftUIX */,
 			);
 			productName = PalworldTools;
 			productReference = 8C82BF872B9A5E0D00D8ADFF /* PalworldTools.app */;
@@ -161,7 +161,6 @@
 			);
 			mainGroup = 8C82BF7E2B9A5E0D00D8ADFF;
 			packageReferences = (
-				8C50F75A2B9F615A00B30884 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 8C82BF882B9A5E0D00D8ADFF /* Products */;
 			projectDirPath = "";
@@ -189,16 +188,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CDC1B142B9FF01100C82514 /* ItemsMenu.swift in Sources */,
 				8C3B8B3F2B9D658E002466C1 /* PalSpheres.swift in Sources */,
 				8C82BF9B2B9A647900D8ADFF /* PalSkills.swift in Sources */,
 				8C82BF992B9A611F00D8ADFF /* EffigyTool.swift in Sources */,
 				8C50F7602B9F8EE600B30884 /* WeaponsView.swift in Sources */,
-				8C50F7532B9E2ABE00B30884 /* MaterialsView.swift in Sources */,
+				8CDC1B132B9FF01100C82514 /* MatViews.swift in Sources */,
+				8CDC1B152B9FF01100C82514 /* MatListView.swift in Sources */,
 				8C3B8B412B9D689C002466C1 /* Materials.swift in Sources */,
 				8C82BF8D2B9A5E0D00D8ADFF /* ContentView.swift in Sources */,
 				8C82BF8B2B9A5E0D00D8ADFF /* PalworldToolsApp.swift in Sources */,
 				8C82BF9D2B9A90BC00D8ADFF /* SkillsList.swift in Sources */,
-				8C50F7512B9E29AF00B30884 /* ItemsView.swift in Sources */,
 				8C50F75E2B9F8ECE00B30884 /* Weapons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,25 +407,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8C50F75A2B9F615A00B30884 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.9;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8C50F75B2B9F615A00B30884 /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C50F75A2B9F615A00B30884 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8C82BF7F2B9A5E0D00D8ADFF /* Project object */;
 }
