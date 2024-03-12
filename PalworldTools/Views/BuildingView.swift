@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct BuildingView: View {
+struct defenseBuildingView: View {
     @EnvironmentObject var defenseBuildingsManager: defenseBuildings
     @State private var selectedMaterial: materialsList? // Track selected material
     
@@ -51,6 +51,6 @@ struct BuildingView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
-                return BuildingView().environmentObject(defenseBuildingsManager)
+                return defenseBuildingView().environmentObject(defenseBuildingsManager)
     }
 }

@@ -13,10 +13,15 @@ struct ItemsView: View {
 
     var body: some View {
             VStack {
-                NavigationLink("Bulding Scructures", destination: BuildingView())
+                NavigationLink("Bulding Scructures", destination: defenseBuildingView())
                 NavigationLink("Materials", destination: MaterialsView())
                 
             }
+        HStack{
+            NavigationLink("Bulding Scructures", destination: defenseBuildingView())
+            NavigationLink("Materials", destination: MaterialsView())
+            Text("Test")
+        }
         }
         
 }
