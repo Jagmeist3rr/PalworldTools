@@ -8,12 +8,10 @@
 import Foundation
 import SwiftUI
 
-
 struct MaterialsView: View {
     @EnvironmentObject var materialsManager: MaterialsManager // Inject MaterialsManager
     @EnvironmentObject var materialsListManager: MaterialsListManager //
     @State private var selectedItem: materialsList? // Track selected item
-    @State private var isShowingPopup = false
 
     var body: some View {
             List(materialsListManager.matslistmanstruct, id: \.self) { material in
@@ -25,8 +23,8 @@ struct MaterialsView: View {
                         Text(material.name)
                     }
                 }
-            }
             .navigationBarTitle("Materials")
+        }
     }
 }
 

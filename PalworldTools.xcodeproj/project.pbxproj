@@ -21,6 +21,8 @@
 		8CDC1B132B9FF01100C82514 /* MatViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B102B9FF01100C82514 /* MatViews.swift */; };
 		8CDC1B142B9FF01100C82514 /* ItemsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B112B9FF01100C82514 /* ItemsMenu.swift */; };
 		8CDC1B152B9FF01100C82514 /* MatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B122B9FF01100C82514 /* MatListView.swift */; };
+		8CDC1B172BA0A54000C82514 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B162BA0A53F00C82514 /* Building.swift */; };
+		8CDC1B192BA0A54F00C82514 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1B182BA0A54F00C82514 /* BuildingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		8CDC1B102B9FF01100C82514 /* MatViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatViews.swift; sourceTree = "<group>"; };
 		8CDC1B112B9FF01100C82514 /* ItemsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsMenu.swift; sourceTree = "<group>"; };
 		8CDC1B122B9FF01100C82514 /* MatListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatListView.swift; sourceTree = "<group>"; };
+		8CDC1B162BA0A53F00C82514 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
+		8CDC1B182BA0A54F00C82514 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 				8CDC1B122B9FF01100C82514 /* MatListView.swift */,
 				8CDC1B102B9FF01100C82514 /* MatViews.swift */,
 				8C82BF9A2B9A647900D8ADFF /* PalSkills.swift */,
+				8CDC1B182BA0A54F00C82514 /* BuildingView.swift */,
 				8C82BF982B9A611F00D8ADFF /* EffigyTool.swift */,
 				8C50F75F2B9F8EE600B30884 /* WeaponsView.swift */,
 				8C82BF8C2B9A5E0D00D8ADFF /* ContentView.swift */,
@@ -73,6 +78,7 @@
 				8C3B8B3E2B9D658E002466C1 /* PalSpheres.swift */,
 				8C50F75D2B9F8ECE00B30884 /* Weapons.swift */,
 				8C3B8B402B9D689C002466C1 /* Materials.swift */,
+				8CDC1B162BA0A53F00C82514 /* Building.swift */,
 			);
 			path = Brains;
 			sourceTree = "<group>";
@@ -189,6 +195,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CDC1B142B9FF01100C82514 /* ItemsMenu.swift in Sources */,
+				8CDC1B172BA0A54000C82514 /* Building.swift in Sources */,
+				8CDC1B192BA0A54F00C82514 /* BuildingView.swift in Sources */,
 				8C3B8B3F2B9D658E002466C1 /* PalSpheres.swift in Sources */,
 				8C82BF9B2B9A647900D8ADFF /* PalSkills.swift in Sources */,
 				8C82BF992B9A611F00D8ADFF /* EffigyTool.swift in Sources */,

@@ -64,7 +64,7 @@ struct MatsView: View {
             Spacer()
             Spacer()
             Spacer()
-        }        
+        }
     }
 }
 

@@ -44,24 +44,37 @@ struct materialsList: Hashable,Identifiable, Equatable{
         }
     
     func hash(into hasher: inout Hasher) {
-           hasher.combine(name)
-           hasher.combine(fullPage)
-       }
+        hasher.combine(id)
+        hasher.combine(name)
+        hasher.combine(fullPage)
+    }
 }
 
 
-class MaterialsListManager: ObservableObject{
+class MaterialsListManager: ObservableObject, Equatable, Hashable {
     @Published var matslistmanstruct: [materialsList] = []
     let materialsManager = MaterialsManager()
     
     init(){
-        for material in materialsManager.matslist{
+        for material in materialsManager.matslist {
             let materialList = materialsList(name: material.name, image: material.icon, fullPage: material)
             matslistmanstruct.append(materialList)
         }
     }
-
     
+    static func == (lhs: MaterialsListManager, rhs: MaterialsListManager) -> Bool {
+        // Implement the equality check between instances of MaterialsListManager
+        // For example, you can compare some properties to determine equality
+        // This implementation compares object identity, which may be sufficient depending on your use case
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        // Implement the hash function using properties relevant to determining the identity of MaterialsListManager instances
+        // For example, you can hash some properties of the manager
+        // This implementation uses the object's identifier as its hash value
+        hasher.combine(ObjectIdentifier(self))
+    }
 }
 
 
@@ -117,4 +130,13 @@ class MaterialsManager: ObservableObject{
         materialsStruct(name: "Wool", icon: Image("Wool_icon"), weight: 1, buyPrice: 100, sellPrice: 10, sources: ["Pals", "Ranch", "Merchant"])
     ]
     
+    func createMaterialsList() -> [materialsList] {
+         var materialsListArray: [materialsList] = []
+         for material in matslist {
+             _ = UUID() // Generate a UUID for each materialsList instance
+             let materialsListItem = materialsList(name: material.name, image: material.icon, fullPage: material)
+             materialsListArray.append(materialsListItem)
+         }
+         return materialsListArray
+     }
 }

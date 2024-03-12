@@ -13,11 +13,10 @@ struct ItemsView: View {
 
     var body: some View {
             VStack {
-                Text("Test")
+                NavigationLink("Bulding Scructures", destination: BuildingView())
                 NavigationLink("Materials", destination: MaterialsView())
                 
             }
-            .navigationTitle("Items")
         }
         
 }
@@ -26,6 +25,8 @@ struct Items_Previews: PreviewProvider {
     static var previews: some View {
         ItemsView()
             .environmentObject(MaterialsListManager())
+            .environmentObject(MaterialsManager())
+            .environmentObject(SkillsManager())
     }
 }
 
