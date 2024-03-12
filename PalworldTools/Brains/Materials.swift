@@ -8,17 +8,27 @@
 import Foundation
 import SwiftUI
 
-struct materialsStruct{
+struct materialsStruct: Hashable{
     var name:String
     var icon: Image
     var weight: Float
     var buyPrice: Int
     var sellPrice: Int
     var sources: [String]
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        //hasher.combine(icon)
+        hasher.combine(weight)
+        hasher.combine(buyPrice)
+        hasher.combine(sellPrice)
+        hasher.combine(sources)
+    }
 }
 
-struct materialsList{
+struct materialsList: Hashable,Identifiable, Equatable{
     //List of Materials that display
+    var id = UUID() // Add Identifiable conformance
     var name: String
     var image: Image
     var fullPage: materialsStruct
@@ -28,7 +38,15 @@ struct materialsList{
         self.image = image
         self.fullPage = fullPage
     }
-
+    static func == (lhs: materialsList, rhs: materialsList) -> Bool {
+            // Compare properties to determine equality
+            return lhs.id == rhs.id // For example, you can compare the id property
+        }
+    
+    func hash(into hasher: inout Hasher) {
+           hasher.combine(name)
+           hasher.combine(fullPage)
+       }
 }
 
 

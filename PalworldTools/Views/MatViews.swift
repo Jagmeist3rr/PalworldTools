@@ -17,7 +17,7 @@ struct MatsView: View {
     var body: some View {
         let roundedweight = String(format: "%.2f", item.fullPage.weight)
         
-        VStack (){
+        VStack{
             HStack() { // Align items to the top
                 item.image
                 Text(item.name)
@@ -64,7 +64,7 @@ struct MatsView: View {
             Spacer()
             Spacer()
             Spacer()
-        }
+        }        
     }
 }
 
