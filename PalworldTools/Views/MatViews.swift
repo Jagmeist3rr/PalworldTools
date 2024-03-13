@@ -17,53 +17,57 @@ struct MatsView: View {
     var body: some View {
         let roundedweight = String(format: "%.2f", item.fullPage.weight)
         
-        VStack{
-            HStack() { // Align items to the top
-                item.image
-                Text(item.name)
-            }
-            Spacer()
-                VStack {
-                    HStack{
-                        Text("Weight:")
-                            .padding(.leading)
-                        Text("\(roundedweight)")
-                        Spacer()
-
-                    }
-                    HStack{
-                        Text("Buy Price:")
-                            .padding(.leading)
-                        Text("\(item.fullPage.buyPrice)")
-                        Spacer()
-
-                    }
-                    HStack{
-                        Text("Sell Price:")
-                            .padding(.leading)
-                        Text("\(item.fullPage.sellPrice)")
-                        Spacer()
-
-                    }
+        ZStack {
+            Color(hex: "#8f8da6")
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                HStack() { // Align items to the top
+                    item.image
+                    Text(item.name)
                 }
-            
                 Spacer()
-                VStack {
-                    HStack{
-                        Text("How to Obtain:")
-                            .padding(.leading)
-                        Spacer()
+                    VStack {
+                        HStack{
+                            Text("Weight:")
+                                .padding(.leading)
+                            Text("\(roundedweight)")
+                            Spacer()
+
+                        }
+                        HStack{
+                            Text("Buy Price:")
+                                .padding(.leading)
+                            Text("\(item.fullPage.buyPrice)")
+                            Spacer()
+
+                        }
+                        HStack{
+                            Text("Sell Price:")
+                                .padding(.leading)
+                            Text("\(item.fullPage.sellPrice)")
+                            Spacer()
+
+                        }
                     }
+                
+                    Spacer()
+                    VStack {
+                        HStack{
+                            Text("How to Obtain:")
+                                .padding(.leading)
+                            Spacer()
+                        }
+                }
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
             }
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
         }
     }
 }

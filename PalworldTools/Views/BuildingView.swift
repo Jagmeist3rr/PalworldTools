@@ -13,36 +13,43 @@ struct defenseBuildingView: View {
     @State private var selectedMaterial: materialsList? // Track selected material
     
     var body: some View {
-        List(defenseBuildingsManager.buildList, id: \.self) { building in
-            VStack {
-                HStack {
-                    building.icon
-                    Text(building.name)
-                        .font(.title)
-                }
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Tier: \(building.tier)")
-                        Text("Points: \(building.points)")
-                        Text("Workload: \(building.workload)")
-                        // Display other properties as needed
+        
+        ZStack {
+            
+            List(defenseBuildingsManager.buildList, id: \.self) {
+                building in
+                
+                VStack {
+                    HStack {
+                        building.icon
+                        Text(building.name)
+                            .font(.title)
                     }
-                    .padding()
-                    VStack {
-                        ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
-                            Button(action: {
-                                self.selectedMaterial = material
-                            }) {
-                                Text("\(material.name): \(building.mats[material] ?? 0)")
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .sheet(item: self.$selectedMaterial) { selectedMaterial in
-                                MatsView(item: selectedMaterial)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Tier: \(building.tier)")
+                            Text("Points: \(building.points)")
+                            Text("Workload: \(building.workload)")
+                            // Display other properties as needed
+                        }
+                        .padding()
+                        VStack {
+                            ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
+                                Button(action: {
+                                    self.selectedMaterial = material
+                                }) {
+                                    Text("\(material.name): \(building.mats[material] ?? 0)")
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .sheet(item: self.$selectedMaterial) { selectedMaterial in
+                                    MatsView(item: selectedMaterial)
+                                }
                             }
                         }
                     }
                 }
             }
+            
         }
     }
 }

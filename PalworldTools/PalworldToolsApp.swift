@@ -13,9 +13,6 @@ struct PalworldToolsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(skillsManager) // Provide skillsManager as an environment object
-                .environmentObject(MaterialsListManager())
             let defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
             return ContentView()
                 .environmentObject(defenseBuildingsManager)

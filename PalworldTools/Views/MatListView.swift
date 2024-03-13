@@ -14,16 +14,20 @@ struct MaterialsView: View {
     @State private var selectedItem: materialsList? // Track selected item
 
     var body: some View {
+        ZStack {
+            Color(hex: "#8f8da6")
+                .edgesIgnoringSafeArea(.all)
             List(materialsListManager.matslistmanstruct, id: \.self) { material in
-                NavigationLink(destination: MatsView(item: material)) {
-                    HStack {
-                        material.image
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                        Text(material.name)
+                    NavigationLink(destination: MatsView(item: material)) {
+                        HStack {
+                            material.image
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text(material.name)
+                        }
                     }
-                }
-            .navigationBarTitle("Materials")
+                .navigationBarTitle("Materials")
+            }
         }
     }
 }

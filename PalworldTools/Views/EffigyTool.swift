@@ -12,15 +12,22 @@ struct EffigyTool: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack {
-            Text("This is the Detail View")
-                .padding()
-            Image("R3pos")
-            Text("Test")
+        ZStack {
+            Color(hex: "#8f8da6")
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("This is the Detail View")
+                    .padding()
+                Image("R3pos")
+                Text("Test")
+                
+            }
+
+
         }
-        .navigationTitle("Effigy Tools")
         
     }
+    
 }
 
 struct Effigy_Previews: PreviewProvider {

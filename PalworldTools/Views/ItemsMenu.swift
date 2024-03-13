@@ -12,11 +12,16 @@ struct ItemsView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
+        ZStack {
+            Color(hex: "#8f8da6")
+                .edgesIgnoringSafeArea(.all)
             VStack {
-                NavigationLink("Bulding Scructures", destination: defenseBuildingView())
-                NavigationLink("Materials", destination: MaterialsView())
-                
+                    NavigationLink("Bulding Scructures", destination: defenseBuildingView())
+                    NavigationLink("Materials", destination: MaterialsView())
+                    
             }
+            .foregroundColor(.black)
+        }
         HStack{
             NavigationLink("Bulding Scructures", destination: defenseBuildingView())
             NavigationLink("Materials", destination: MaterialsView())
