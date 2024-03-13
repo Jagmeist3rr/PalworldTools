@@ -26,63 +26,71 @@ struct defenseBuildingView: View {
     var body: some View {
         let allBuildinsManager = allBuildings(defenseBuildingsManager: defenseBuildingsManager, otherBuildingsManager: otherBuildingsManager, materialsListManager: MaterialsListManager())
         
-        ZStack {
-            VStack{
-            Picker(selection: $selectedOption, label: Text("Select Option")) {
-                ForEach(tempoptions, id: \.self) {
-                    Text($0)
-                }
-            }
-            .foregroundColor(.black)
-            .onChange(of: selectedOption) { newValue in
-                // Update the list contents based on the selected option
-                switch newValue {
-                case "Defenses":
-                    buildingManager = defenseBuildingsManager
-                case "Other":
-                    buildingManager = otherBuildingsManager
-                case "All":
-                    buildingManager = allBuildinsManager
-                default:
-                    break
-                }
-            }
-            List(buildingManager.buildList, id: \.self) {
-                building in
-                
-                VStack {
-                    HStack {
-                        building.icon
-                        Text(building.name)
-                            .font(.title)
+        GeometryReader { geometry in
+            ZStack {
+                Color(hex: "#8f8da6")
+                    .edgesIgnoringSafeArea(.all)
+                VStack{
+                Picker(selection: $selectedOption, label: Text("Select Option")) {
+                    ForEach(tempoptions, id: \.self) {
+                        Text($0)
                     }
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Tier: \(building.tier)")
-                            Text("Points: \(building.points)")
-                            Text("Workload: \(building.workload)")
-                            // Display other properties as needed
+                }
+                .foregroundColor(.black)
+                .onChange(of: selectedOption) { newValue in
+                    // Update the list contents based on the selected option
+                    switch newValue {
+                    case "Defenses":
+                        buildingManager = defenseBuildingsManager
+                    case "Other":
+                        buildingManager = otherBuildingsManager
+                    case "All":
+                        buildingManager = allBuildinsManager
+                    default:
+                        break
+                    }
+                }
+                List(buildingManager.buildList, id: \.self) {
+                    building in
+                    
+                    VStack {
+                        HStack {
+                            building.icon
+                            Text(building.name)
+                                .font(.title)
                         }
-                        .padding()
-                        VStack {
-                            ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
-                                Button(action: {
-                                    self.selectedMaterial = material
-                                }) {
-                                    Text("\(material.name): \(building.mats[material] ?? 0)")
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .sheet(item: self.$selectedMaterial) { selectedMaterial in
-                                    MatsView(item: selectedMaterial)
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Tier: \(building.tier)")
+                                Text("Points: \(building.points)")
+                                Text("Workload: \(building.workload)")
+                                // Display other properties as needed
+                            }
+                            .padding()
+                            VStack {
+                                ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
+                                    Button(action: {
+                                        self.selectedMaterial = material
+                                    }) {
+                                        Text("\(material.name): \(building.mats[material] ?? 0)")
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .sheet(item: self.$selectedMaterial) { selectedMaterial in
+                                        MatsView(item: selectedMaterial)
+                                    }
                                 }
                             }
                         }
                     }
+                    .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
+
                 }
+                .listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
+
             }
-        }
-            }
-            .navigationBarHidden(true) // Hide default navigation bar
+                }
+            .navigationBarHidden(true)
+        } // Hide default navigation bar
     }
 }
 
