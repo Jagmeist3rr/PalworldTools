@@ -86,14 +86,12 @@ struct buildingItemsList: Hashable, Identifiable, Equatable{
     
 }
 
-
-class buildingItemsListManager: ObservableObject{
-    @Published var buildingListsruct: [buildingItemsList] = []
-    
-    
+protocol BuildingManager {
+    var buildList: [buildingItems] { get set }
+    // Add any other required properties or methods here
 }
 
-class defenseBuildings: ObservableObject {
+class defenseBuildings: ObservableObject, BuildingManager{
     @Published var buildList: [buildingItems]
     
     let materialsListManager: MaterialsListManager
@@ -120,3 +118,41 @@ class defenseBuildings: ObservableObject {
     }
 }
 
+class otherBuildings: ObservableObject, BuildingManager{
+    @Published var buildList: [buildingItems]
+    
+    let materialsListManager: MaterialsListManager
+
+    init(buildList: [buildingItems], materialsListManager: MaterialsListManager) {
+        self.buildList = buildList // Assigning the parameter value to the class property
+        self.materialsListManager = materialsListManager
+        
+        // Creating building items and assigning them to buildList
+        self.buildList = [
+            buildingItems(name: "Electric Pylon", icon: Image("Electric_Pylon"), tier: 48, points: 2, workload: 600, category: "Others", materialQuantities: ["Ingot": 100, "Electric Organ": 30, "Circuit Board": 20], materialsListManagers: ["Ingot": MaterialsListManager(), "Electric Organ": MaterialsListManager(), "Circuit Board": MaterialsListManager()]),
+            buildingItems(name: "Flame Cauldron", icon: Image("Flame_Cauldron"), tier: 20, points: 2, workload: 160, category: "Other", materialQuantities: ["Ingot": 50, "Wood": 100, "Flame Ogran": 20], materialsListManagers: ["Ingot": MaterialsListManager(), "Wood": MaterialsListManager(), "Flame Ogran": MaterialsListManager()]),
+            buildingItems(name: "Flower Bed", icon: Image("Flower_Bed"), tier: 24, points: 2, workload: 320, category: "Other", materialQuantities: ["Wood": 50, "Stone": 100, "Cement": 40, "Beautiful Flower": 20], materialsListManagers: ["Wood": MaterialsListManager(), "Stone": MaterialsListManager(), "Cement": MaterialsListManager(), "Beautiful Flower": MaterialsListManager()]),
+            buildingItems(name: "Large Toolbox", icon: Image("Large_Toolbox"), tier: 19, points: 2, workload: 120, category: "Other", materialQuantities: ["Ingot": 40, "Wood": 100, "Nail": 15], materialsListManagers: ["Ingot": MaterialsListManager(), "Wood": MaterialsListManager(), "Nail": MaterialsListManager()]),
+            buildingItems(name: "Pickaxe and Helmet", icon: Image("Pickaxe_and_Helmet"), tier: 30, points: 2, workload: 480, category: "Other", materialQuantities: ["Wood": 50, "Stone": 50, "Ingot": 50], materialsListManagers: ["Wood": MaterialsListManager(), "Stone": MaterialsListManager(), "Ingot": MaterialsListManager()]),
+            buildingItems(name: "Sign", icon: Image("Signboard"), tier: 7, points: 1, workload: 0, category: "Other", materialQuantities: ["Wood": 10], materialsListManagers: ["Wood": MaterialsListManager()]),
+            buildingItems(name: "Silo", icon: Image("Silo"), tier: 25, points: 2, workload: 400, category: "Other", materialQuantities: ["Wood": 300, "Stone": 100, "Fiber": 100], materialsListManagers: ["Wood": MaterialsListManager(), "Stone": MaterialsListManager(), "Fiber": MaterialsListManager()]),
+            buildingItems(name: "Snowman", icon: Image("Snowman"), tier: 33, points: 2, workload: 400, category: "Other", materialQuantities: ["Ice Organ": 50, "Wood": 50, "Cloth": 20], materialsListManagers: ["Ice Organ": MaterialsListManager(), "Wood": MaterialsListManager(), "Cloth": MaterialsListManager()]),
+            buildingItems(name: "Stump and Axe", icon: Image("Stump_and_Axe"), tier: 28, points: 2, workload: 320, category: "Other", materialQuantities: ["Wood": 150, "Ingot": 40, "Stone": 30], materialsListManagers: ["Wood": MaterialsListManager(), "Ingot": MaterialsListManager(), "Stone": MaterialsListManager()]),
+            buildingItems(name: "Training Dummy", icon: Image("Training_Dummy"), tier: 13, points: 2, workload: 20, category: "Other", materialQuantities: ["Wood": 20, "Fiber": 5, "Paldium Fragment": 5], materialsListManagers: ["Wood": MaterialsListManager(), "Fiber": MaterialsListManager(), "Paldium Fragment": MaterialsListManager()]),
+            buildingItems(name: "Water Fountain", icon: Image("Water_Fountain"), tier: 23, points: 2, workload: 200, category: "Other", materialQuantities: ["Ingot": 100, "Stone": 200, "Pal Fluids": 20], materialsListManagers: ["Ingot": MaterialsListManager(), "Stone": MaterialsListManager(), "Pal Fluids": MaterialsListManager()]),
+            buildingItems(name: "Witch Cauldron", icon: Image("Witch_Cauldron"), tier: 32, points: 2, workload: 600, category: "Other", materialQuantities: ["Ingot": 50, "Stone": 50], materialsListManagers: ["Ingot": MaterialsListManager(), "Stone": MaterialsListManager()])
+        ]
+    }
+}
+
+class allBuildings: ObservableObject, BuildingManager{
+    @Published var buildList: [buildingItems]
+    
+    let materialsListManager: MaterialsListManager
+
+    init(defenseBuildingsManager: defenseBuildings, otherBuildingsManager: otherBuildings, materialsListManager: MaterialsListManager) {
+            self.materialsListManager = materialsListManager
+            // Combine the buildList arrays from defenseBuildings and otherBuildings
+            self.buildList = defenseBuildingsManager.buildList + otherBuildingsManager.buildList
+        }
+}

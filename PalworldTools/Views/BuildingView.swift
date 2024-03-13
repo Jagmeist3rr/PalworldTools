@@ -9,14 +9,45 @@ import Foundation
 import SwiftUI
 
 struct defenseBuildingView: View {
-    @EnvironmentObject var defenseBuildingsManager: defenseBuildings
+    @Environment(\.presentationMode) var presentationMode
+    @State private var selectedOption = "Defenses"
+    @State private var tempoptions = ["Defenses", "Other", "All"]
+    @State private var options = ["Defenses", "Other", "Furniture", "Foundations", "Ligting", "Infrastructure", "Food", "Storage", "Pal", "Production"]
+    @State private var buildingManager: BuildingManager
+    @StateObject var defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
+    @StateObject var otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager())
+
     @State private var selectedMaterial: materialsList? // Track selected material
     
+    init(buildingManager: BuildingManager) {
+          self._buildingManager = State(initialValue: buildingManager)
+      }
+    
     var body: some View {
+        let allBuildinsManager = allBuildings(defenseBuildingsManager: defenseBuildingsManager, otherBuildingsManager: otherBuildingsManager, materialsListManager: MaterialsListManager())
         
         ZStack {
-            
-            List(defenseBuildingsManager.buildList, id: \.self) {
+            VStack{
+            Picker(selection: $selectedOption, label: Text("Select Option")) {
+                ForEach(tempoptions, id: \.self) {
+                    Text($0)
+                }
+            }
+            .foregroundColor(.black)
+            .onChange(of: selectedOption) { newValue in
+                // Update the list contents based on the selected option
+                switch newValue {
+                case "Defenses":
+                    buildingManager = defenseBuildingsManager
+                case "Other":
+                    buildingManager = otherBuildingsManager
+                case "All":
+                    buildingManager = allBuildinsManager
+                default:
+                    break
+                }
+            }
+            List(buildingManager.buildList, id: \.self) {
                 building in
                 
                 VStack {
@@ -49,15 +80,22 @@ struct defenseBuildingView: View {
                     }
                 }
             }
-            
         }
+            }
+            .navigationBarHidden(true) // Hide default navigation bar
     }
 }
 
-
-struct ContentView_Previews: PreviewProvider {
+struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
         let defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
-                return defenseBuildingView().environmentObject(defenseBuildingsManager)
+        let otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager()) // Initialize otherBuildingsManager here
+
+        return defenseBuildingView(buildingManager: defenseBuildingsManager)
+            .environmentObject(defenseBuildingsManager)
+            .environmentObject(MaterialsListManager())
+            .environmentObject(MaterialsManager())
+            .environmentObject(otherBuildingsManager)
+
     }
 }

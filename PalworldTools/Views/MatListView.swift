@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct MaterialsView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @EnvironmentObject var materialsManager: MaterialsManager // Inject MaterialsManager
     @EnvironmentObject var materialsListManager: MaterialsListManager //
     @State private var selectedItem: materialsList? // Track selected item
@@ -17,30 +19,22 @@ struct MaterialsView: View {
         ZStack {
             Color(hex: "#8f8da6")
                 .edgesIgnoringSafeArea(.all)
-            List(materialsListManager.matslistmanstruct, id: \.self) { material in
-                    NavigationLink(destination: MatsView(item: material)) {
-                        HStack {
-                            material.image
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                            Text(material.name)
+                List(materialsListManager.matslistmanstruct, id: \.self) { material in
+                        NavigationLink(destination: MatsView(item: material)) {
+                            HStack {
+                                material.image
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                Text(material.name)
+                            }
                         }
-                    }
-                .navigationBarTitle("Materials")
-            }
-            
-        }
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                HStack {
-                    NavigationLink("Building Structures", destination: defenseBuildingView())
-                    NavigationLink("Materials", destination: MaterialsView())
-                    Text("Extra Button") // Add additional button if needed
+                    .navigationBarTitle("Materials")
                 }
-                .foregroundColor(.white)
-                .padding() // Add padding as needed
-            }
+
+            .navigationBarHidden(true) // Hide default navigation bar
+
         }
+
     }
 }
 
