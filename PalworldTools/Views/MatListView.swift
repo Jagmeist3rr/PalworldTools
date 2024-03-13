@@ -28,6 +28,18 @@ struct MaterialsView: View {
                     }
                 .navigationBarTitle("Materials")
             }
+            
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                HStack {
+                    NavigationLink("Building Structures", destination: defenseBuildingView())
+                    NavigationLink("Materials", destination: MaterialsView())
+                    Text("Extra Button") // Add additional button if needed
+                }
+                .foregroundColor(.white)
+                .padding() // Add padding as needed
+            }
         }
     }
 }

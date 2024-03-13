@@ -1,42 +1,40 @@
-//
-//  ItemsView.swift
-//  PalworldTools
-//
-//  Created by Javier Rendon on 3/10/24.
-//
-
-import Foundation
 import SwiftUI
 
 struct ItemsView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        ZStack {
-            Color(hex: "#8f8da6")
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                    NavigationLink("Bulding Scructures", destination: defenseBuildingView())
-                    NavigationLink("Materials", destination: MaterialsView())
-                    
+        NavigationView {
+            ZStack {
+                Color(hex: "#8f8da6")
+                    .edgesIgnoringSafeArea(.all)
+
             }
-            .foregroundColor(.black)
+            .navigationTitle("Items") // Add navigation title
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    HStack {
+                        NavigationLink("Building Structures", destination: defenseBuildingView())
+                        NavigationLink("Materials", destination: MaterialsView())
+                        Button("Home"){
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                    .foregroundColor(.black)
+                    .padding() // Add padding as needed
+                }
+            }
         }
-        HStack{
-            NavigationLink("Bulding Scructures", destination: defenseBuildingView())
-            NavigationLink("Materials", destination: MaterialsView())
-            Text("Test")
-        }
-        }
-        
+        .navigationBarHidden(true) // Hide default navigation bar
+    }
 }
 
 struct Items_Previews: PreviewProvider {
     static var previews: some View {
-        ItemsView()
+        let defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
+        return ItemsView()
+            .environmentObject(defenseBuildingsManager)
             .environmentObject(MaterialsListManager())
             .environmentObject(MaterialsManager())
-            .environmentObject(SkillsManager())
     }
 }
-
