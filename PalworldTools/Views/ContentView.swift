@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var palsManager = PalsManager(palsManager: [])
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -47,6 +49,7 @@ struct ContentView: View {
             }
 
         }
+        .environmentObject(palsManager) // Inject PalsManager here
 
     }
 }
@@ -73,6 +76,7 @@ extension Color {
 }
 
 struct ContentViewt_Previews: PreviewProvider {
+
     static var previews: some View {
         ContentView()
             .environmentObject(MaterialsListManager())

@@ -9,18 +9,25 @@ import Foundation
 import SwiftUI
 
 struct PalsView: View {
+
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var palsManager: PalsManager
     var item: Pals
     
     var body: some View {
         VStack {
-            HStack() {
+            HStack {
                 item.icon
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 50, height: 50)
-                Text(item.name)
+                VStack {
+                    Text(item.name)
+                        .font(.title)
+                    Text(item.title)
+                        .opacity(0.5)
+                    
+                }
                 Text(item.number)
             }
             .padding()
@@ -30,22 +37,38 @@ struct PalsView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(item.element, id: \.self) { elementName in
-
-                        Text(elementName) // Display each element's name
+                        // Display each element's name
+                        HStack {
+                            Text(elementName)
+                            let icon = palsManager.elementIcons(element: elementName)
+                            
+                            // Check if the icon is not equal to a default icon
+                            if icon != Image("") {
+                                // Display the icon
+                                icon
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            } else {
+                                // Display a placeholder if no icon is found
+                                Image("Neutral_icon")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            }
+                        }
 
                     }
+                    
+                    // Other text elements outside the ForEach loop
                     Text("Buy Price:")
                     Text("Sell Price:")
                     Text("How to Obtain:")
                 }
                 .padding()
-                Spacer()
                 VStack{
-                    Text("Test")
+                    Text("Text")
                 }
-                .padding()
             }
-
+            
             Spacer() // Add spacer to push content to the top
         }
         .navigationBarTitle("", displayMode: .inline) // Clear the navigation bar title
@@ -54,7 +77,10 @@ struct PalsView: View {
 
 struct PalsView_Previews: PreviewProvider {
     static var previews: some View {
-        PalsView(item: Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: [], partnerSkill: "Fluffy Shield", worksuitabilty: [workSuitability(name: "Handiwork", icon: Image("Handiwork_icon"), level: 1)]))
+        let palsManager = PalsManager(palsManager: [])
+        let item = Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: [], partnerSkill: "Fluffy Shield", worksuitabilty: ["Handiwork": 1])
+        
+        return PalsView(item: item)
+            .environmentObject(palsManager)
     }
 }
-

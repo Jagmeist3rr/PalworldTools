@@ -1,0 +1,3 @@
+Lamball,Lamball,Big Floof,#001,Neutral,Wool,Lamball Mutton,2,Fluffy Shield,Handiwork_icon,1
+Cattiva,Cattiva,The Cat's Pajamas,#002,Neutral,Red Berries,2,Cat Helper,Handiwork_icon,1
+Lamball,Lamball,Big Floof,#001,Neutral,Wool,Lamball Mutton,2,Fluffy Shield,Handiwork_icon,1

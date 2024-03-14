@@ -19,7 +19,7 @@ struct Pals: Hashable{
     var food: Int
     var foodimage: [Image]
     var partnerSkill: String
-    var worksuitabilty: [workSuitability]
+    var worksuitabilty: [String: Int]
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
@@ -65,11 +65,69 @@ class PalsManager: ObservableObject{
             foodImages.append(Image("Food_On")) // Replace "Food_On" with your actual food image name
         }
         
-        
+
         self.palsManager = [
-            Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: foodImages, partnerSkill: "Fluffy Shield", worksuitabilty: [workSuitability(name: "Handiwork", icon: Image("Handiwork_icon"), level: 1)])
+            Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: foodImages, partnerSkill: "Fluffy Shield", worksuitabilty: ["Handiwork": 1]),
+            Pals(name: "Cattiva", icon: Image("Cattiva"), title: "The Cat's Pajamas", number: "#002", element: ["Neutral"], drops: ["Red Berries"], food: 2, foodimage: foodImages, partnerSkill: "Cat Helper", worksuitabilty: ["Handiwork": 1,"Gathering":1,"Mining":1,"Transporting":1]),
+            Pals(name: "Chikipi", icon: Image("Chikipi"), title: "Plumb & Juicy", number: "#003", element: ["Neutral"], drops: ["Egg", "Chikipi Poultry"], food: 1, foodimage: foodImages, partnerSkill: "Egg Layer", worksuitabilty: ["Gathering": 1, "Farming":1]),
+            Pals(name: "Lifmunk", icon: Image("Lifmunk"), title: "Coward of the Steppe", number: "#004", element: ["Grass"], drops: ["Berry Seeds", "Low Grade Medical Supplies"], food: 1, foodimage: foodImages, partnerSkill: "Lifmunk Recoil", worksuitabilty: ["Planting": 1, "Handiwork": 1,"Gathering":1,"Lumbering": 1, "Medicine Production": 1]),
+            Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: foodImages, partnerSkill: "Huggy Fire", worksuitabilty: ["Kindling": 1])
         ]
     }
+    func elementIcons(element: String) -> Image{
+        switch element{
+        case "Neutral":
+            return Image("\(element)_icon")
+        case "Dark":
+            return Image("\(element)_icon")
+        case "Electric":
+            return Image("\(element)_icon")
+        case "Fire":
+            return Image("\(element)_icon")
+        case "Grass":
+            return Image("\(element)_icon")
+        case "Ground":
+            return Image("\(element)_icon")
+        case "Ice":
+            return Image("\(element)_icon")
+        case "Water":
+            return Image("\(element)_icon")
+        case "Dragon":
+            return Image("\(element)_icon")
+            default:
+                return Image("Neutral_icon")
+        }
+    }
     
+    func workIcons(work: String) -> Image{
+        switch work{
+        case "Handiwork":
+            return Image("\(work)_Icon")
+        case "Kindling":
+            return Image("\(work)_Icon")
+        case "Watering":
+            return Image("\(work)_Icon")
+        case "Generating Electricity":
+            return Image("Generating_Electricity_Icon")
+        case "Gathering":
+            return Image("\(work)_Icon")
+        case "Lumbering":
+            return Image("\(work)_Icon")
+        case "Mining":
+            return Image("\(work)_Icon")
+        case "Medicine Production":
+            return Image("Medicine_Production_Icon")
+        case "Cooling":
+            return Image("\(work)_Icon")
+        case "Transorting":
+            return Image("\(work)_Icon")
+        case "Farming":
+            return Image("\(work)_Icon")
+        case "Planting":
+            return Image("\(work)_Icon")
+        default:
+            return Image("Handiwork_Icon")
+        }
+    }
     
 }
