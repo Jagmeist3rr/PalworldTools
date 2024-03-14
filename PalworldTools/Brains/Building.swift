@@ -97,7 +97,7 @@ class defenseBuildings: ObservableObject, BuildingManager{
     let materialsListManager: MaterialsListManager
 
     init(buildList: [buildingItems], materialsListManager: MaterialsListManager) {
-        self.buildList = buildList // Assigning the parameter value to the class property
+        self.buildList = buildList.sorted { $0.name < $1.name } // Sort the buildList by name
         self.materialsListManager = materialsListManager
         
         // Creating building items and assigning them to buildList
@@ -124,7 +124,7 @@ class otherBuildings: ObservableObject, BuildingManager{
     let materialsListManager: MaterialsListManager
 
     init(buildList: [buildingItems], materialsListManager: MaterialsListManager) {
-        self.buildList = buildList // Assigning the parameter value to the class property
+        self.buildList = buildList.sorted { $0.name < $1.name } // Sort the buildList by name
         self.materialsListManager = materialsListManager
         
         // Creating building items and assigning them to buildList
@@ -153,6 +153,6 @@ class allBuildings: ObservableObject, BuildingManager{
     init(defenseBuildingsManager: defenseBuildings, otherBuildingsManager: otherBuildings, materialsListManager: MaterialsListManager) {
             self.materialsListManager = materialsListManager
             // Combine the buildList arrays from defenseBuildings and otherBuildings
-            self.buildList = defenseBuildingsManager.buildList + otherBuildingsManager.buildList
-        }
+        self.buildList = (defenseBuildingsManager.buildList + otherBuildingsManager.buildList)
+                   .sorted { $0.name < $1.name }        }
 }

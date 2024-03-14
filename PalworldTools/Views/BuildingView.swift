@@ -24,9 +24,7 @@ struct defenseBuildingView: View {
         self._selectedOption = selectedOption
     }
     
-    var body: some View {
-        let allBuildinsManager = allBuildings(defenseBuildingsManager: defenseBuildingsManager, otherBuildingsManager: otherBuildingsManager, materialsListManager: MaterialsListManager())
-        
+    var body: some View {        
         GeometryReader { geometry in
             ZStack {
                 Color(hex: "#8f8da6")

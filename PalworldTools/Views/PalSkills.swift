@@ -110,8 +110,9 @@ struct PalSkills: View {
                         
                     }
                     .frame(height: 70)
+                    .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
                 }
-                
+                .listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
                 .padding()
             }
             .navigationTitle("Pal Skills")

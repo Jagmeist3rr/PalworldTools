@@ -8,9 +8,31 @@ struct ContentView: View {
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    NavigationLink("Lifunk Capture Rates", destination: EffigyTool())
-                    NavigationLink("Pal Skills",destination: PalSkills())
-                    NavigationLink("Items", destination: ItemsView())
+                    TabView() {
+                        PalsList(palsManager: PalsManager(palsManager: []))
+                            .tag(0)
+                            .foregroundColor(.black)
+                            .tabItem {
+                                Image(systemName: "wrench.and.screwdriver.fill")
+                                Text("Pals")
+                            }
+                            .foregroundColor(.blue)
+                        PalSkills()
+                            .tag(1)
+                            .foregroundColor(.black)
+                            .tabItem {
+                                Image(systemName: "building.2.crop.circle.fill")
+                                Text("Pall Skills")
+                            }
+                            .foregroundColor(.black)
+                        NavigationLink("Items", destination: ItemsView())
+                            .tag(2)
+                            .tabItem {
+                                Image(systemName: "button.roundedbottom.horizontal")
+                                Text("Misc")
+                            }
+                            .foregroundColor(.black)
+                    }
                 }
                 .foregroundColor(.black)
             }
@@ -23,6 +45,7 @@ struct ContentView: View {
                         .foregroundColor(.black)
                 }
             }
+
         }
 
     }
