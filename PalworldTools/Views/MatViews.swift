@@ -15,62 +15,34 @@ struct MatsView: View {
     var item: materialsList
     
     var body: some View {
-        let roundedweight = String(format: "%.2f", item.fullPage.weight)
+        let roundedWeight = String(format: "%.2f", item.fullPage.weight)
         
-        ZStack {
-            Color(hex: "#8f8da6")
-                .edgesIgnoringSafeArea(.all)
-            VStack{
-                HStack() { // Align items to the top
-                    item.image
-                    Text(item.name)
-                }
-                Spacer()
-                    VStack {
-                        HStack{
-                            Text("Weight:")
-                                .padding(.leading)
-                            Text("\(roundedweight)")
-                            Spacer()
-
-                        }
-                        HStack{
-                            Text("Buy Price:")
-                                .padding(.leading)
-                            Text("\(item.fullPage.buyPrice)")
-                            Spacer()
-
-                        }
-                        HStack{
-                            Text("Sell Price:")
-                                .padding(.leading)
-                            Text("\(item.fullPage.sellPrice)")
-                            Spacer()
-
-                        }
-                    }
-                
-                    Spacer()
-                    VStack {
-                        HStack{
-                            Text("How to Obtain:")
-                                .padding(.leading)
-                            Spacer()
-                        }
-                }
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
+        VStack {
+            HStack() {
+                item.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 50)
+                Text(item.name)
             }
+            .padding()
+            
+            Divider() // Add a divider for separation
+            
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Weight: \(roundedWeight)")
+                Text("Buy Price: \(item.fullPage.buyPrice)")
+                Text("Sell Price: \(item.fullPage.sellPrice)")
+                Text("How to Obtain:") // Add your logic to display how to obtain information
+            }
+            .padding()
+            
+            Spacer() // Add spacer to push content to the top
         }
+        .navigationBarTitle("", displayMode: .inline) // Clear the navigation bar title
     }
 }
+
 
 struct ItemsView_Previews: PreviewProvider {
     static var previews: some View {

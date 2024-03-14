@@ -12,16 +12,15 @@ struct defenseBuildingView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var selectedOption: String
     @State private var tempoptions = ["Defenses", "Other", "All"]
-    @State private var options = ["Defenses", "Other", "Furniture", "Foundations", "Ligting", "Infrastructure", "Food", "Storage", "Pal", "Production"]
     
-    @State private var buildingManager: BuildingManager
+    @Binding var buildingManager: BuildingManager
     @StateObject var defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
     @StateObject var otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager())
-
-    @State private var selectedMaterial: materialsList? // Track selected material
     
-    init(buildingManager: BuildingManager, selectedOption: Binding<String>) {
-        self._buildingManager = State(initialValue: buildingManager)
+    @State private var selectedMaterialIndex: Int? // Track selected material index
+    
+    init(buildingManager: Binding<BuildingManager>, selectedOption: Binding<String>) {
+        self._buildingManager = buildingManager
         self._selectedOption = selectedOption
     }
     
@@ -33,52 +32,40 @@ struct defenseBuildingView: View {
                 Color(hex: "#8f8da6")
                     .edgesIgnoringSafeArea(.all)
                 VStack{
-                    Picker(selection: $selectedOption, label: Text("")) {
-                        ForEach(tempoptions, id: \.self) {
-                            Text($0)
-                        }
-                    }
-                    .foregroundColor(.black)
-
-                    .onChange(of: selectedOption) { newValue in
-                        // Update the list contents based on the selected option
-                        switch newValue {
-                        case "Defenses":
-                            buildingManager = defenseBuildingsManager
-                        case "Other":
-                            buildingManager = otherBuildingsManager
-                        case "All":
-                            buildingManager = allBuildinsManager
-                        default:
-                            break
-                        }
-                    }
                     List(buildingManager.buildList, id: \.self) { building in
                         VStack {
                             HStack {
                                 building.icon
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
                                 Text(building.name)
                                     .font(.title)
+                                Spacer()
                             }
-                            HStack {
+                            HStack(alignment: .top){
                                 VStack(alignment: .leading) {
                                     Text("Tier: \(building.tier)")
                                     Text("Points: \(building.points)")
                                     Text("Workload: \(building.workload)")
                                     // Display other properties as needed
                                 }
-                                .padding()
+                                .alignmentGuide(.leading) { _ in
+                                    0 // Align to the leading edge of the HStack
+                                }
+                                Spacer()
                                 VStack {
                                     ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
-                                        Button(action: {
-                                            self.selectedMaterial = material
-                                        }) {
-                                            Text("\(material.name): \(building.mats[material] ?? 0)")
+                                        let index = building.mats.keys.sorted(by: { $0.name < $1.name }).firstIndex(of: material)!
+                                        NavigationLink(
+                                            destination: MatsView(item: material),
+                                            tag: index,
+                                            selection: $selectedMaterialIndex
+                                        ) {
+                                            HStack {
+                                                Text(material.name) // Display the material name
+                                            }
                                         }
                                         .buttonStyle(PlainButtonStyle())
-                                        .sheet(item: self.$selectedMaterial) { selectedMaterial in
-                                            MatsView(item: selectedMaterial)
-                                        }
                                     }
                                 }
                             }
@@ -89,16 +76,26 @@ struct defenseBuildingView: View {
                 }
             }
             .navigationBarHidden(true)
+            .onAppear {
+                // Reset selectedMaterialIndex when the view appears
+                selectedMaterialIndex = nil
+            }
         } // Hide default navigation bar
     }
 }
+
 
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
         let defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
         let otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager()) // Initialize otherBuildingsManager here
-        
-        return defenseBuildingView(buildingManager: defenseBuildingsManager, selectedOption: .constant("Defenses"))
+        // Create a binding to the defenseBuildingsManager instance
+        let defenseBuildingsBinding = Binding<BuildingManager>(
+            get: { defenseBuildingsManager },
+            set: { _ in }
+        )
+
+        return defenseBuildingView(buildingManager: defenseBuildingsBinding, selectedOption: .constant("Defenses"))
             .environmentObject(defenseBuildingsManager)
             .environmentObject(MaterialsListManager())
             .environmentObject(MaterialsManager())

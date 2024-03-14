@@ -5,8 +5,10 @@ struct ItemsView: View {
     @StateObject var defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
     @StateObject var otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager())
     @State private var selectedOption = "Defenses"
-    @State private var tempoptions = ["Defenses", "Other", "All"]
     
+    @State private var tempoptions = ["Defenses", "Other", "All"]
+    @State private var selectedBuildingManager: BuildingManager? // Track selected building manager
+
     @State private var showButton = false // Flag to control button visibility
     @State private var selectedTab = 0 // Track selected tab index
 
@@ -16,6 +18,8 @@ struct ItemsView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 if showButton {
+                    // Show the button only when defenseBuildingView is active
+
                     HStack {
                         Button(action: {
                             // Dismiss the current view
@@ -27,22 +31,31 @@ struct ItemsView: View {
                         .padding()
                         Spacer()
                         Text("Items")
-                            .padding(.leading, 20)
+                            .padding(.leading, 69)
                         Spacer()
                         Picker(selection: $selectedOption, label: Text("Select Option")) {
                             ForEach(tempoptions, id: \.self) {
                                 Text($0)
                             }
                         }
-                        //Button("Custom Button") {
-                            // Perform action
-                        //}
+                        .frame(width: 120) // Set the width of the picker
+                        .onChange(of: selectedOption) { newValue in
+                            // Update the selected building manager based on the selected option
+                            switch newValue {
+                            case "Defenses":
+                                selectedBuildingManager = defenseBuildingsManager
+                            case "Other":
+                                selectedBuildingManager = otherBuildingsManager
+                            case "All":
+                                selectedBuildingManager = allBuildings(defenseBuildingsManager: defenseBuildingsManager, otherBuildingsManager: otherBuildingsManager, materialsListManager: MaterialsListManager())
+                            default:
+                                break
+                            }
+                        }
+
                         .foregroundColor(.black)
-                        .padding()
-                        //.frame(maxWidth: .infinity)
-                        Spacer()
+                        .padding(.leading, 20)
                     }
-                    // Show the button only when defenseBuildingView is active
   
                 }
                 else {
@@ -73,20 +86,23 @@ struct ItemsView: View {
                             Text("Materials")
                         }
                         .foregroundColor(.blue)
-                    defenseBuildingView(buildingManager: defenseBuildingsManager, selectedOption: $selectedOption)
+                    defenseBuildingView(buildingManager: Binding(get: { selectedBuildingManager ?? defenseBuildingsManager },
+                                                                set: { selectedBuildingManager = $0 }),
+                                        selectedOption: $selectedOption)
+                        .tag(1)
                         .tag(1)
                         .tabItem {
                             Image(systemName: "building.2.crop.circle.fill")
                             Text("Buildings")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundColor(.black)
                     WeaponsView()
                         .tag(2)
                         .tabItem {
                             Image(systemName: "button.roundedbottom.horizontal")
                             Text("Weapons")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundColor(.black)
                 }
                 .tint(.black)
                 .onChange(of: selectedTab) { tab in
