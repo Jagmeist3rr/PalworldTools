@@ -4,6 +4,9 @@ struct ItemsView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
     @StateObject var otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager())
+    @State private var selectedOption = "Defenses"
+    @State private var tempoptions = ["Defenses", "Other", "All"]
+    
     @State private var showButton = false // Flag to control button visibility
     @State private var selectedTab = 0 // Track selected tab index
 
@@ -12,31 +15,55 @@ struct ItemsView: View {
             Color(hex: "#8f8da6")
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                HStack {
-                    Button(action: {
-                        // Dismiss the current view
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrowshape.turn.up.backward.2.fill")
-                            .foregroundColor(.black)
-                    }
-                    .padding()
-                    Spacer()
-                    Text("Items")
-                        .padding(.leading, 20)
-                    Spacer()
-                    
-                    Spacer()
-                }
                 if showButton {
-                    // Show the button only when defenseBuildingView is active
-                    Button("Custom Button") {
-                        // Perform action
+                    HStack {
+                        Button(action: {
+                            // Dismiss the current view
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "arrowshape.turn.up.backward.2.fill")
+                                .foregroundColor(.black)
+                        }
+                        .padding()
+                        Spacer()
+                        Text("Items")
+                            .padding(.leading, 20)
+                        Spacer()
+                        Picker(selection: $selectedOption, label: Text("Select Option")) {
+                            ForEach(tempoptions, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        //Button("Custom Button") {
+                            // Perform action
+                        //}
+                        .foregroundColor(.black)
+                        .padding()
+                        //.frame(maxWidth: .infinity)
+                        Spacer()
                     }
-                    .foregroundColor(.black)
-                    .padding()
-                    //.frame(maxWidth: .infinity)
+                    // Show the button only when defenseBuildingView is active
+  
                 }
+                else {
+                    HStack {
+                        Button(action: {
+                            // Dismiss the current view
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "arrowshape.turn.up.backward.2.fill")
+                                .foregroundColor(.black)
+                        }
+                        .padding()
+                        Spacer()
+                        Text("Items")
+                            .padding(.leading, 20)
+                        Spacer()
+                        
+                        Spacer()
+                    }
+                }
+
                 TabView(selection: $selectedTab) {
                     MaterialsView()
                         .tag(0)
@@ -46,7 +73,7 @@ struct ItemsView: View {
                             Text("Materials")
                         }
                         .foregroundColor(.blue)
-                    defenseBuildingView(buildingManager: defenseBuildingsManager)
+                    defenseBuildingView(buildingManager: defenseBuildingsManager, selectedOption: $selectedOption)
                         .tag(1)
                         .tabItem {
                             Image(systemName: "building.2.crop.circle.fill")
