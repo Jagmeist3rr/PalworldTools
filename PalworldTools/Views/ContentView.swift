@@ -11,7 +11,7 @@ struct ContentView: View {
 
                 VStack {
                     TabView() {
-                        PalsList(palsManager: PalsManager(palsManager: []))
+                        PalsList(palsManager: palsManager)
                             .tag(0)
                             .foregroundColor(.black)
                             .tabItem {
@@ -35,18 +35,13 @@ struct ContentView: View {
                             }
                             .foregroundColor(.black)
                     }
+                    //.padding(.bottom, 50)
                 }
                 .foregroundColor(.black)
             }
-            
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Palworld Bible")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                }
-            }
+            .edgesIgnoringSafeArea(.bottom) // Adjust edgesIgnoringSafeArea for TabView
+
+
 
         }
         .environmentObject(palsManager) // Inject PalsManager here
