@@ -67,10 +67,13 @@ struct PalsView: View {
                 VStack{
                     Text("Text")
                 }
+
             }
             
             Spacer() // Add spacer to push content to the top
         }
+        .background(Color(red: 196/255, green: 195/255, blue: 212/255))
+
         .navigationBarTitle("", displayMode: .inline) // Clear the navigation bar title
     }
 }

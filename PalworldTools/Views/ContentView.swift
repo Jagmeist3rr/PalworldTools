@@ -2,7 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var palsManager = PalsManager(palsManager: [])
-
+    
+    init() {
+        //UITabBar.appearance().backgroundColor = UIColor.black
+        UITabBar.appearance().barTintColor = UIColor.black
+        UITabBar.appearance().unselectedItemTintColor = UIColor.gray
+    }
     var body: some View {
         NavigationView {
             ZStack {
@@ -17,29 +22,33 @@ struct ContentView: View {
                             .tabItem {
                                 Image(systemName: "wrench.and.screwdriver.fill")
                                 Text("Pals")
+                                    .foregroundColor(Color.red)
                             }
-                            .foregroundColor(.blue)
-                        PalSkills()
+                        NavigationLink("Skills", destination: SkillView())
                             .tag(1)
                             .foregroundColor(.black)
                             .tabItem {
                                 Image(systemName: "building.2.crop.circle.fill")
                                 Text("Pall Skills")
                             }
-                            .foregroundColor(.black)
                         NavigationLink("Items", destination: ItemsView())
                             .tag(2)
                             .tabItem {
                                 Image(systemName: "button.roundedbottom.horizontal")
                                 Text("Misc")
                             }
-                            .foregroundColor(.black)
                     }
-                    //.padding(.bottom, 50)
+                    .toolbarBackground(Color.red)
+                    .onAppear {
+                        // Apply appearance customization when the ContentView appears
+                        UITabBar.appearance().barTintColor = UIColor(red: 143/255, green: 141/255, blue: 166/255, alpha: 1.0)
+                        UITabBar.appearance().unselectedItemTintColor = UIColor.black
+                    }
+  
                 }
                 .foregroundColor(.black)
             }
-            .edgesIgnoringSafeArea(.bottom) // Adjust edgesIgnoringSafeArea for TabView
+            .edgesIgnoringSafeArea(.all) // Adjust edgesIgnoringSafeArea for TabView
 
 
 

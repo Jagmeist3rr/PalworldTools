@@ -113,7 +113,8 @@ struct PalSkills: View {
                     .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
                 }
                 //.listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
-                .cornerRadius(25)                
+                .listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
+
             }
             .navigationTitle("Pal Skills")
         }

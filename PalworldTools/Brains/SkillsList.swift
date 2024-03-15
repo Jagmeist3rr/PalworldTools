@@ -106,5 +106,4 @@ class SkillsManager: ObservableObject {
         Skill(name: "Workaholic", rank: Image("R3pos"), description: nil, attack: nil, defense: nil, movement: nil, workSpeed: nil, sanityDrain: -15, hungerDrain: nil)
     ]
 }
-//Name,Rank,Description,Attack,Defense,Movement,
-//Work,Sanity Drain, Hunger Drain,
+

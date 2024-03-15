@@ -12,6 +12,17 @@ struct ItemsView: View {
     @State private var showButton = false // Flag to control button visibility
     @State private var selectedTab = 0 // Track selected tab index
 
+    
+    init() {
+        let red = CGFloat(143) / 255.0 // Red component
+        let green = CGFloat(141) / 255.0 // Green component
+        let blue = CGFloat(166) / 255.0 // Blue component
+        let alpha = CGFloat(1.0) // Alpha component (1.0 for fully opaque)
+
+        let tabBarColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        UITabBar.appearance().backgroundColor = tabBarColor
+    }
+    
     var body: some View {
         ZStack {
             Color(hex: "#8f8da6")
@@ -105,6 +116,8 @@ struct ItemsView: View {
                         .foregroundColor(.black)
                 }
                 .tint(.black)
+                .background(.black) // Set the accentColor to black
+
                 .onChange(of: selectedTab) { tab in
                     // Check if the defense building tab is selected
                     showButton = (tab == 1)
@@ -123,6 +136,7 @@ struct Items_Previews: PreviewProvider {
         let otherBuildingsManager = otherBuildings(buildList: [], materialsListManager: MaterialsListManager()) // Initialize otherBuildingsManager here
 
         return ItemsView()
+            .environmentObject(SkillsManager())
             .environmentObject(defenseBuildingsManager)
             .environmentObject(MaterialsListManager())
             .environmentObject(MaterialsManager())
