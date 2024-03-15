@@ -71,7 +71,7 @@ class PalsManager: ObservableObject{
             Pals(name: "Cattiva", icon: Image("Cattiva"), title: "The Cat's Pajamas", number: "#002", element: ["Neutral"], drops: ["Red Berries"], food: 2, foodimage: foodImages, partnerSkill: "Cat Helper", worksuitabilty: ["Handiwork": 1,"Gathering":1,"Mining":1,"Transporting":1]),
             Pals(name: "Chikipi", icon: Image("Chikipi"), title: "Plumb & Juicy", number: "#003", element: ["Neutral"], drops: ["Egg", "Chikipi Poultry"], food: 1, foodimage: foodImages, partnerSkill: "Egg Layer", worksuitabilty: ["Gathering": 1, "Farming":1]),
             Pals(name: "Lifmunk", icon: Image("Lifmunk"), title: "Coward of the Steppe", number: "#004", element: ["Grass"], drops: ["Berry Seeds", "Low Grade Medical Supplies"], food: 1, foodimage: foodImages, partnerSkill: "Lifmunk Recoil", worksuitabilty: ["Planting": 1, "Handiwork": 1,"Gathering":1,"Lumbering": 1, "Medicine Production": 1]),
-            Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: foodImages, partnerSkill: "Huggy Fire", worksuitabilty: ["Kindling": 1])
+            Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire", "Water"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: foodImages, partnerSkill: "Huggy Fire", worksuitabilty: ["Kindling": 1])
         ]
     }
     func elementIcons(element: String) -> Image{

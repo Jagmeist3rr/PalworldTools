@@ -19,106 +19,117 @@ struct PalSkills: View {
     
     var body: some View {
         
-        ZStack {
-            Color(hex: "#8f8da6")
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                
-                // Access palSkills from skillsManager
-                
-                List(skillsManager.palSkills, id: \.name) { skill in
-                    HStack{
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack{
-                                Text(skill.name)
-                                    .font(.headline)
-                                    .frame(width: 115,alignment: .leading)
-                                skill.rank
-                                    .resizable()
-                                    .frame(width: 20,height: 20)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                
-                            }
-                            if let description = skill.description{
-                                Text(description)
-                                    .font(.system(size: 15))
-                                    .frame(width: 200,alignment: .leading)
-                            }
+            ZStack {
+                Color(hex: "#8f8da6")
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    
+                    // Access palSkills from skillsManager
+                    
+                    List(skillsManager.palSkills, id: \.name) { skill in
+                        HStack{
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack{
+                                    Text(skill.name)
+                                        .font(.headline)
+                                        .frame(width: 115,alignment: .leading)
+                                    skill.rank
+                                        .resizable()
+                                        .frame(width: 20,height: 20)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                    
+                                }
+                                if let description = skill.description{
+                                    Text(description)
+                                        .font(.system(size: 15))
+                                        .frame(width: 200,alignment: .leading)
+                                }
 
+                            }
+                            .frame(width: 150,alignment: .leading)
+                            .frame(maxWidth: .infinity)
+                            
+                            Spacer()
+                            
+                            
+                            VStack(alignment: .leading){
+                                HStack{
+                                    if let attack = skill.attack {
+                                        Text("Attack:")
+                                            .frame(width: 60,alignment: .leading)
+                                        Text("\(attack)%")
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                                HStack{
+                                    if let defense = skill.defense {
+                                        Text("Defense:")
+                                            .frame(width: 70,alignment: .leading)
+                                        Text("\(defense)%")
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                                HStack{
+                                    if let movement = skill.movement {
+                                        Text("Movement:")
+                                            .frame(width: 80,alignment: .leading)
+                                        Text("\(movement)%")
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                                HStack{
+                                    if let workSpeed = skill.workSpeed {
+                                        Text("Work Speed:")
+                                            .frame(width: CGFloat   (labelWidth),alignment: .leading)
+                                            .frame(width: 75,alignment: .leading)
+                                        Text("\(workSpeed)%")
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                                HStack{
+                                    if let sanityDrain = skill.sanityDrain {
+                                        Text("Sanity Drain:")
+                                            .frame(width: CGFloat   (labelWidth),alignment: .leading)
+                                            .frame(width: 80,alignment: .leading)
+                                        Text("\(sanityDrain)%")
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                                HStack{
+                                    if let hungerDrain = skill.hungerDrain {
+                                        Text("Hunger Drain:")
+                                            .frame(width: CGFloat   (labelWidth),alignment: .leading)
+                                            .frame(width: 80,alignment: .leading)
+                                        Text("\(hungerDrain)%")
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 14))
+                            
                         }
-                        .frame(width: 150,alignment: .leading)
-                        .frame(maxWidth: .infinity)
-                        
-                        Spacer()
-                        
-                        
-                        VStack(alignment: .leading){
-                            HStack{
-                                if let attack = skill.attack {
-                                    Text("Attack:")
-                                        .frame(width: 60,alignment: .leading)
-                                    Text("\(attack)%")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                            HStack{
-                                if let defense = skill.defense {
-                                    Text("Defense:")
-                                        .frame(width: 70,alignment: .leading)
-                                    Text("\(defense)%")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                            HStack{
-                                if let movement = skill.movement {
-                                    Text("Movement:")
-                                        .frame(width: 80,alignment: .leading)
-                                    Text("\(movement)%")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                            HStack{
-                                if let workSpeed = skill.workSpeed {
-                                    Text("Work Speed:")
-                                        .frame(width: CGFloat   (labelWidth),alignment: .leading)
-                                        .frame(width: 75,alignment: .leading)
-                                    Text("\(workSpeed)%")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                            HStack{
-                                if let sanityDrain = skill.sanityDrain {
-                                    Text("Sanity Drain:")
-                                        .frame(width: CGFloat   (labelWidth),alignment: .leading)
-                                        .frame(width: 80,alignment: .leading)
-                                    Text("\(sanityDrain)%")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                            HStack{
-                                if let hungerDrain = skill.hungerDrain {
-                                    Text("Hunger Drain:")
-                                        .frame(width: CGFloat   (labelWidth),alignment: .leading)
-                                        .frame(width: 80,alignment: .leading)
-                                    Text("\(hungerDrain)%")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .font(.system(size: 14))
+                        .frame(height: 70)
+                        .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
                         
                     }
-                    .frame(height: 70)
-                    .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
+                    .listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
+                    .cornerRadius(25)
+                    .navigationBarTitle("Passive Skills", displayMode: .inline) // Set navigation title here
+                    //.navigationTitle("Misc View")
+
                 }
-                //.listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
-                .listStyle(PlainListStyle()) // Apply PlainListStyle to remove default list style
+                
+                //.navigationTitle("Misc View")
 
             }
-            .navigationTitle("Pal Skills")
-        }
+
+
+        
+
+
     }
+    
 }
 
 struct PalSkills_Previews: PreviewProvider {

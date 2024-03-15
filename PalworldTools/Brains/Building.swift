@@ -145,6 +145,8 @@ class otherBuildings: ObservableObject, BuildingManager{
     }
 }
 
+
+
 class allBuildings: ObservableObject, BuildingManager{
     @Published var buildList: [buildingItems]
     

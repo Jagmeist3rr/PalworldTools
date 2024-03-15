@@ -13,6 +13,7 @@ struct defenseBuildingView: View {
     @Binding var selectedOption: String
     @State private var tempoptions = ["Defenses", "Other", "All"]
     @State private var selectedMaterial: materialsList? // Track selected material
+    @State private var selectedBuildingManager: BuildingManager? // Track selected building manager
 
     @Binding var buildingManager: BuildingManager
     @StateObject var defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())
@@ -39,100 +40,125 @@ struct defenseBuildingView: View {
             ZStack {
                 Color(hex: "#8f8da6")
                     .edgesIgnoringSafeArea(.all)
-                VStack{
-                    List{
-                        ForEach(buildingManager.buildList, id: \.self) { building in
-                            VStack {
-                                HStack {
-                                    building.icon
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                    Text(building.name)
-                                        .font(.title)
-                                    Spacer()
-                                }
-                                Divider()
-                                    .padding(.horizontal,16)
-                                HStack(alignment: .top){
+                NavigationView {
+                    VStack{
+                        List{
+                            ForEach(buildingManager.buildList, id: \.self) { building in
+                                VStack {
                                     HStack {
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Text("Tier: ")
-                                                Text("\(building.tier)")
-                                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                            }
-                                            HStack {
-                                                Text("Points: ")
-                                                Text("\(building.points)")
-                                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                            }
-                                            HStack {
-                                                Text("Load: ")
-                                                Text("\(building.workload)")
-                                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                            }
-                                            // Display other properties as needed
-                                        }
-                                        .alignmentGuide(.leading) { _ in
-                                            0 // Align to the leading edge of the HStack
-                                        }
-                                        
-                                        Divider()
-                                            .frame(height: 70)
+                                        building.icon
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                        Text(building.name)
+                                            .font(.title)
+                                        Spacer()
                                     }
-                                    Spacer()
-                                    
-                                    VStack {
-                                        ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
-                                            Button(action: {
-                                                self.selectedMaterial = material
-                                            }) {
-                                                Text("\(material.name): \(building.mats[material] ?? 0)")
+                                    Divider()
+                                        .padding(.horizontal,16)
+                                    HStack(alignment: .top){
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("Tier: ")
+                                                    Text("\(building.tier)")
+                                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                                }
+                                                HStack {
+                                                    Text("Points: ")
+                                                    Text("\(building.points)")
+                                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                                }
+                                                HStack {
+                                                    Text("Load: ")
+                                                    Text("\(building.workload)")
+                                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                                }
+                                                // Display other properties as needed
                                             }
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .buttonStyle(PlainButtonStyle())
-                                            .sheet(item: self.$selectedMaterial) { selectedMaterial in
-                                                MatsView(item: selectedMaterial)
+                                            .alignmentGuide(.leading) { _ in
+                                                0 // Align to the leading edge of the HStack
                                             }
+                                            
+                                            Divider()
+                                                .frame(height: 70)
                                         }
+                                        Spacer()
+                                        
+                                        VStack {
+                                            ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
+                                                Button(action: {
+                                                    self.selectedMaterial = material
+                                                }) {
+                                                    Text("\(material.name): \(building.mats[material] ?? 0)")
+                                                }
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .buttonStyle(PlainButtonStyle())
+                                                .sheet(item: self.$selectedMaterial) { selectedMaterial in
+                                                    MatsView(item: selectedMaterial)
+                                                }
+                                            
+                                            }
+                                            
+                                            
+                                        }
+                                        Spacer()
+                                        
                                         
                                     }
-                                    Spacer()
                                     
                                 }
+                                
+                                .foregroundColor(.black)
+                                                    .listRowBackground(
+                                                        RoundedRectangle(cornerRadius: 5)
+                                                            .background(.clear)
+                                                            .foregroundColor(Color(red: 196/255, green: 195/255, blue: 212/255))
+                                                            .padding(
+                                                                EdgeInsets(
+                                                                    top: 2,
+                                                                    leading: 10,
+                                                                    bottom: 10,
+                                                                    trailing: 10)))
+                                                    .listRowSeparator(.hidden)
                             }
-                            .foregroundColor(.black)
-                                                .listRowBackground(
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .background(.clear)
-                                                        .foregroundColor(Color(red: 196/255, green: 195/255, blue: 212/255))
-                                                        .padding(
-                                                            EdgeInsets(
-                                                                top: 2,
-                                                                leading: 10,
-                                                                bottom: 10,
-                                                                trailing: 10)))
-                                                .listRowSeparator(.hidden)
+                            .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
+                            .listStyle(.plain)
+                            
                         }
-                        .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
-                        .listStyle(.plain)
-                    }
-                    
-                }
+                        .cornerRadius(25)
+                        .background(Color(hex: "#8f8da6"))
 
-                .navigationBarHidden(true)
-                .onAppear {
-                    // Reset selectedMaterialIndex when the view appears
-                    selectedMaterialIndex = nil
-                }
-                .sheet(isPresented: $isShowingMatsView) {
-                    if let selectedMaterialIndex = selectedMaterialIndex {
-                        let building = buildingManager.buildList[selectedMaterialIndex]
-                        let sortedMaterials = Array(building.mats.keys).sorted(by: { $0.name < $1.name })
-                        let material = sortedMaterials[selectedMaterialIndex]
-                        MatsView(item: material)
                     }
                 }
+                .toolbar{
+                    
+                    Picker(selection: $selectedOption, label: Text("Select Option")) {
+                        ForEach(tempoptions, id: \.self) {
+                            Text($0)
+                                .foregroundColor(.black)
+
+                        }
+                    }
+                    .navigationBarTitle("Buildings", displayMode: .inline) // Set navigation title here
+
+                    .frame(width: 120) // Set the width of the picker
+                    .onChange(of: selectedOption) { newValue in
+                        // Update the selected building manager based on the selected option
+                        switch newValue {
+                        case "Defenses":
+                            buildingManager = defenseBuildingsManager
+                        case "Other":
+                            buildingManager = otherBuildingsManager
+                        case "All":
+                            buildingManager = allBuildings(defenseBuildingsManager: defenseBuildingsManager, otherBuildingsManager: otherBuildingsManager, materialsListManager: MaterialsListManager())
+                        default:
+                            break
+                        }
+                    }
+                }
+                //.navigationBarHidden(true)
+
+
                 
                 
                 

@@ -7,13 +7,14 @@ struct ContentView: View {
         //UITabBar.appearance().backgroundColor = UIColor.black
         UITabBar.appearance().barTintColor = UIColor.black
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
+        
     }
     var body: some View {
+        
+        
         NavigationView {
             ZStack {
-                Color(hex: "#8f8da6")
-                    .edgesIgnoringSafeArea(.all)
-
+                Color(hex: "#8f8da6").edgesIgnoringSafeArea(.all)
                 VStack {
                     TabView() {
                         PalsList(palsManager: palsManager)
@@ -22,26 +23,17 @@ struct ContentView: View {
                             .tabItem {
                                 Image(systemName: "wrench.and.screwdriver.fill")
                                 Text("Pals")
-                                    .foregroundColor(Color.red)
                             }
-                        NavigationLink("Skills", destination: SkillView())
-                            .tag(1)
-                            .foregroundColor(.black)
-                            .tabItem {
-                                Image(systemName: "building.2.crop.circle.fill")
-                                Text("Pall Skills")
-                            }
-                        NavigationLink("Items", destination: ItemsView())
+                        MiscView()
                             .tag(2)
                             .tabItem {
                                 Image(systemName: "button.roundedbottom.horizontal")
                                 Text("Misc")
                             }
                     }
-                    .toolbarBackground(Color.red)
                     .onAppear {
                         // Apply appearance customization when the ContentView appears
-                        UITabBar.appearance().barTintColor = UIColor(red: 143/255, green: 141/255, blue: 166/255, alpha: 1.0)
+                        UITabBar.appearance().barTintColor = UIColor(red: 143/255, green: 141/255, blue: 166/255, alpha: 0.0)
                         UITabBar.appearance().unselectedItemTintColor = UIColor.black
                     }
   
@@ -55,6 +47,20 @@ struct ContentView: View {
         }
         .environmentObject(palsManager) // Inject PalsManager here
 
+    }
+}
+
+struct NavigationConfigurator: UIViewControllerRepresentable {
+    var configure: (UINavigationController) -> Void = { _ in }
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
+        UIViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
+        if let nc = uiViewController.navigationController {
+            self.configure(nc)
+        }
     }
 }
 

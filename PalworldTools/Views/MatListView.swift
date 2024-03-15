@@ -28,9 +28,9 @@ struct MaterialsView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                //Color(red: 196/255, green: 195/255, blue: 212/255)
+                Color(red: 143/255, green: 141/255, blue: 166/255)
                     //.frame(width: geometry.size.width, height: geometry.size.height)
-                   // .edgesIgnoringSafeArea(.all)
+                   .edgesIgnoringSafeArea(.all)
 
                 List(materialsListManager.matslistmanstruct, id: \.self) { material in
                     NavigationLink(destination: MatsView(item: material)) {
@@ -56,10 +56,10 @@ struct MaterialsView: View {
                                                         trailing: 10)))
                                         .listRowSeparator(.hidden)
                 }
-                
+                .cornerRadius(25)
                 .listStyle(.plain) // Apply PlainListStyle to remove default list style
                 .navigationBarTitle("Materials")
-                .navigationBarHidden(true) // Hide default navigation bar
+                //.navigationBarHidden(true) // Hide default navigation bar
             }
         }
     }

@@ -17,6 +17,7 @@ struct PalsView: View {
     var body: some View {
         VStack {
             HStack {
+                //HStack for Image, name, and number
                 item.icon
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -24,56 +25,79 @@ struct PalsView: View {
                 VStack {
                     Text(item.name)
                         .font(.title)
-                    Text(item.title)
+                        .frame(maxWidth: 200, alignment: .leading)
+                    //Text(item.title)
+                    Text("\(item.number)  \(item.title)")
                         .opacity(0.5)
+                        .frame(maxWidth: 200, alignment: .leading)
                     
                 }
-                Text(item.number)
+                Spacer()
+                Spacer()
             }
             .padding()
             
-            Divider() // Add a divider for separation
+            Divider()
             
             HStack {
-                VStack(alignment: .leading, spacing: 10) {
+                //Elements and drops hstack
+                Text("Elements:")
+                    .frame(alignment: .top)
+                    .padding(.leading)
+                Spacer()
+                Text("Drops:")
+                    .frame(alignment: .top)
+                    .padding(.trailing, 140)
+
+                }
+            HStack{
+                //Hstack for element array and drop array
+                VStack {
+                    //VStack for elementarray and icon
                     ForEach(item.element, id: \.self) { elementName in
-                        // Display each element's name
                         HStack {
-                            Text(elementName)
-                            let icon = palsManager.elementIcons(element: elementName)
-                            
-                            // Check if the icon is not equal to a default icon
-                            if icon != Image("") {
-                                // Display the icon
-                                icon
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                            } else {
-                                // Display a placeholder if no icon is found
-                                Image("Neutral_icon")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                            }
+                            //Displays element names and icons in a list
+                                Text(elementName)
+                                    .frame(maxWidth: 100, alignment: .leading)
+                                    
+                                let icon = palsManager.elementIcons(element: elementName)
+                                if icon != Image("") {
+                                    icon
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                } else {
+                                    Image("Neutral_icon")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                }
+                        }
+                    }
+                }
+                .frame(height: 200, alignment: .top)
+                .padding(.leading)
+                Spacer()
+                VStack {
+                    //Vstack for drops array
+                    ForEach(item.drops, id: \.self) { elementName in
+                        HStack {
+                                Text(elementName)
+                                    .frame(maxWidth: 150, alignment: .leading)
                         }
 
                     }
-                    
-                    // Other text elements outside the ForEach loop
-                    Text("Buy Price:")
-                    Text("Sell Price:")
-                    Text("How to Obtain:")
                 }
-                .padding()
-                VStack{
-                    Text("Text")
-                }
-
+                .padding(.leading)
+                .frame(height: 200, alignment: .top)
+                Spacer()
             }
-            
-            Spacer() // Add spacer to push content to the top
+            HStack{
+                //Hstack will be for amount of food
+                Text("Test")
+            }
+            .frame(maxWidth: .infinity, maxHeight: 100)
+            Spacer()
         }
         .background(Color(red: 196/255, green: 195/255, blue: 212/255))
-
         .navigationBarTitle("", displayMode: .inline) // Clear the navigation bar title
     }
 }
@@ -81,8 +105,9 @@ struct PalsView: View {
 struct PalsView_Previews: PreviewProvider {
     static var previews: some View {
         let palsManager = PalsManager(palsManager: [])
-        let item = Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: [], partnerSkill: "Fluffy Shield", worksuitabilty: ["Handiwork": 1])
+        let item = Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral", "Fire"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: [], partnerSkill: "Fluffy Shield", worksuitabilty: ["Handiwork": 1])
         
+        let item2 = Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire", "Water"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: [], partnerSkill: "Huggy Fire", worksuitabilty: ["Kindling": 1])
         return PalsView(item: item)
             .environmentObject(palsManager)
     }
