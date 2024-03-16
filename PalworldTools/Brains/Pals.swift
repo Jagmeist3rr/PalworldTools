@@ -56,7 +56,6 @@ struct workSuitability{
 
 class PalsManager: ObservableObject{
     @Published var palsManager: [Pals]
-    //["Handiwork": 1, "Transporting": 1]
     init(palsManager: [Pals]) {
         self.palsManager = palsManager
         

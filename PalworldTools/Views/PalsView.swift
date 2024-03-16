@@ -29,7 +29,7 @@ struct PalsView: View {
                     //Text(item.title)
                     Text("\(item.number)  \(item.title)")
                         .opacity(0.5)
-                        .frame(maxWidth: 200, alignment: .leading)
+                        .frame(maxWidth: 300, alignment: .leading)
                     
                 }
                 Spacer()
@@ -90,11 +90,13 @@ struct PalsView: View {
                 .frame(height: 200, alignment: .top)
                 Spacer()
             }
+            Divider()
             HStack{
                 //Hstack will be for amount of food
                 Text("Test")
             }
             .frame(maxWidth: .infinity, maxHeight: 100)
+            Divider()
             Spacer()
         }
         .background(Color(red: 196/255, green: 195/255, blue: 212/255))

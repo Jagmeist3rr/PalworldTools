@@ -4,7 +4,6 @@ struct ContentView: View {
     @StateObject var palsManager = PalsManager(palsManager: [])
     
     init() {
-        //UITabBar.appearance().backgroundColor = UIColor.black
         UITabBar.appearance().barTintColor = UIColor.black
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
         
@@ -17,7 +16,7 @@ struct ContentView: View {
                 Color(hex: "#8f8da6").edgesIgnoringSafeArea(.all)
                 VStack {
                     TabView() {
-                        PalsList(palsManager: palsManager)
+                        PalsList()
                             .tag(0)
                             .foregroundColor(.black)
                             .tabItem {

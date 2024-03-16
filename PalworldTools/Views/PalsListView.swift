@@ -18,7 +18,7 @@ struct PalsList: View {
         NavigationView {
             ZStack {
                 Color(hex: "#8f8da6")
-                    .edgesIgnoringSafeArea(.all)
+                  .edgesIgnoringSafeArea(.all)
                 VStack {
                     List(palsManager.palsManager, id: \.self) {
                         pals in
@@ -39,13 +39,16 @@ struct PalsList: View {
                         .listRowBackground(Color(red: 196/255, green: 195/255, blue: 212/255))
                         .frame(width: 330, height: 20)
                     }
-                    
                     .cornerRadius(25)
                 }
-            }
-            .navigationBarTitle("Pals", displayMode: .inline)
 
+            }
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .navigationBarTitle("Pals", displayMode: .inline)
+            //.navigationBarTitleDisplayMode(.automatic)
         }
+        
+
     }
 }
 

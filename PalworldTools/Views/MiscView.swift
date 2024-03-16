@@ -18,19 +18,8 @@ struct MiscView: View {
     
     @State private var tempoptions = ["Defenses", "Other", "All"]
     @State private var selectedBuildingManager: BuildingManager? // Track selected building manager
-
     @State private var showButton = false // Flag to control button visibility
     @State private var selectedTab = 0 // Track selected tab index
-
-    init() {
-        let red = CGFloat(143) / 255.0 // Red component
-        let green = CGFloat(141) / 255.0 // Green component
-        let blue = CGFloat(166) / 255.0 // Blue component
-        let alpha = CGFloat(0.0) // Alpha component (1.0 for fully opaque)
-
-        let tabBarColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
-        UITabBar.appearance().backgroundColor = tabBarColor
-    }
     
     var body: some View {
         NavigationView {
@@ -40,17 +29,23 @@ struct MiscView: View {
                 
                 List {
                     ForEach(navigationLinks, id: \.0) { link in
-                        NavigationLink(link.0, destination: link.1)
+                        HStack {
+                            NavigationLink(link.0, destination: link.1)
+                        }
+                      
+                        .listRowBackground(Color.white)
+
+                           
+
                     }
                     
                 }
                 .cornerRadius(25)
                 .foregroundColor(.black)
-                .listStyle(PlainListStyle())
-
             }
-            .navigationBarTitle("Misc", displayMode: .inline) // Set navigation title here
-            .background(Color(hex: "#8f8da6")) // Set background color to match the view's color
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .navigationBarTitle("Pals", displayMode: .inline)
+            .navigationBarTitleDisplayMode(.automatic)
 
         }
 
