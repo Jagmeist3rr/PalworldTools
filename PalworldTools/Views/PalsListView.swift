@@ -10,10 +10,8 @@ import SwiftUI
 
 struct PalsList: View {
     @Environment(\.presentationMode) var presentationMode
-    //@StateObject var palsManager: PalsManager
     @StateObject var palsManager = PalsManager(palsManager: [])
     
-
     var body: some View {
         NavigationView {
             ZStack {
@@ -45,16 +43,13 @@ struct PalsList: View {
             }
             .toolbarBackground(.hidden, for: .navigationBar)
             .navigationBarTitle("Pals", displayMode: .inline)
-            //.navigationBarTitleDisplayMode(.automatic)
         }
-        
-
     }
 }
 
 struct Effigy_Previews: PreviewProvider {
     static var previews: some View {
         PalsList()
-            .environmentObject(PalsManager(palsManager: [])) // Pass the same PalsManager instance
+            .environmentObject(PalsManager(palsManager: []))
     }
 }

@@ -32,11 +32,7 @@ struct MiscView: View {
                         HStack {
                             NavigationLink(link.0, destination: link.1)
                         }
-                      
                         .listRowBackground(Color.white)
-
-                           
-
                     }
                     
                 }
@@ -48,7 +44,6 @@ struct MiscView: View {
             .navigationBarTitleDisplayMode(.automatic)
 
         }
-
     }
     
     private var navigationLinks: [(String, AnyView)] {

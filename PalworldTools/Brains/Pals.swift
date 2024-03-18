@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Pals: Hashable{
+struct Pals: Hashable, Observable{
     
     var name: String
     var icon: Image
@@ -126,6 +126,16 @@ class PalsManager: ObservableObject{
             return Image("\(work)_Icon")
         default:
             return Image("Handiwork_Icon")
+        }
+    }
+    
+    func colorForElement<T: Equatable>(_ element: T, inArray array: [T]) -> Color {
+        if array.contains(element) {
+            // Return a specific color when the element is found in the array
+            return .black // Change this to the desired color
+        } else {
+            // Return a default color when the element is not found in the array
+            return .white // Change this to the desired color
         }
     }
     

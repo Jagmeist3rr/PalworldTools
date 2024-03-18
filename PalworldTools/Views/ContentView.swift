@@ -39,10 +39,7 @@ struct ContentView: View {
                 }
                 .foregroundColor(.black)
             }
-            .edgesIgnoringSafeArea(.all) // Adjust edgesIgnoringSafeArea for TabView
-
-
-
+            .edgesIgnoringSafeArea(.all)
         }
         .environmentObject(palsManager) // Inject PalsManager here
 
