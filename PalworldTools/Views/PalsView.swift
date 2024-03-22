@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PalsView: View {
-
+    @EnvironmentObject var materialsListManager: MaterialsListManager //
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var palsManager: PalsManager
     var item: Pals
@@ -80,11 +80,12 @@ struct PalsView: View {
                     VStack {
                         //Vstack for drops array
                         ForEach(item.drops, id: \.self) { elementName in
+                            NavigationLink(destination: MatsView(item: materialsList)){
                             HStack {
                                 Text(elementName)
                                     .frame(maxWidth: 150, alignment: .leading)
                             }
-                            
+                        }
                         }
                     }
                     .padding(.leading)
@@ -152,10 +153,6 @@ struct test_view: View {
                     .resizable()
                     .frame(width: 20, height: 20)
                     .padding(.leading)
-                if item.worksuitabilty["Kindling"] != nil{
-                    textColor = palsManager.colorForElement("Kindling", inArray: item.worksuitabilty)
-                        .foregroundStyle(textColor)
-                }
                 Text("Kindling: ")
                     .foregroundStyle(textColor)
                 Spacer()
