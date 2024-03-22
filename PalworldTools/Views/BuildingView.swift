@@ -86,7 +86,19 @@ struct defenseBuildingView: View {
                                         
                                         VStack {
  
-                                            buildarrays(buildingManager: buildingManager)
+                                            ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
+                                                Button(action: {
+                                                    self.selectedMaterial = material
+                                                }) {
+                                                    Text("\(material.name): \(building.mats[material] ?? 0)")
+                                                }
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .buttonStyle(PlainButtonStyle())
+                                                .sheet(item: self.$selectedMaterial) { selectedMaterial in
+                                                    MatsView(item: selectedMaterial)
+                                                }
+                                            
+                                            }
                                             
                                         }
                                         Spacer()
@@ -162,7 +174,6 @@ struct buildarrays: View {
     
     var body: some View{
         
-        ForEach
         Text("Test")
     }
 }
