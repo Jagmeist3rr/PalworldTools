@@ -91,6 +91,15 @@ protocol BuildingManager {
     // Add any other required properties or methods here
 }
 
+class BuildingManagerWrapper: ObservableObject {
+    @Published var buildingManager: BuildingManager
+    
+    init(buildingManager: BuildingManager) {
+        self.buildingManager = buildingManager
+    }
+}
+
+
 class defenseBuildings: ObservableObject, BuildingManager{
     @Published var buildList: [buildingItems]
     

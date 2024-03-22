@@ -85,20 +85,8 @@ struct defenseBuildingView: View {
                                         Spacer()
                                         
                                         VStack {
-                                            ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
-                                                Button(action: {
-                                                    self.selectedMaterial = material
-                                                }) {
-                                                    Text("\(material.name): \(building.mats[material] ?? 0)")
-                                                }
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                .buttonStyle(PlainButtonStyle())
-                                                .sheet(item: self.$selectedMaterial) { selectedMaterial in
-                                                    MatsView(item: selectedMaterial)
-                                                }
-                                            
-                                            }
-                                            
+ 
+                                            buildarrays(buildingManager: buildingManager)
                                             
                                         }
                                         Spacer()
@@ -168,8 +156,33 @@ struct defenseBuildingView: View {
     }
 }
 
+struct buildarrays: View {
+    //@ObservedObject selectMaterial: sele
+    @EnvironmentObject var buildingManagerWarpper: BuildingManagerWrapper
+    
+    var body: some View{
+        
+        ForEach
+        Text("Test")
+    }
+}
 
-
+/*
+ 
+ ForEach(building.mats.keys.sorted(by: { $0.name < $1.name }), id: \.self) { material in
+     Button(action: {
+         self.selectedMaterial = material
+     }) {
+         Text("\(material.name): \(building.mats[material] ?? 0)")
+     }
+     .frame(maxWidth: .infinity, alignment: .leading)
+     .buttonStyle(PlainButtonStyle())
+     .sheet(item: self.$selectedMaterial) { selectedMaterial in
+         MatsView(item: selectedMaterial)
+     }
+ 
+ }
+ */
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
         let defenseBuildingsManager = defenseBuildings(buildList: [], materialsListManager: MaterialsListManager())

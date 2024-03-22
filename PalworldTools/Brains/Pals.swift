@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Pals: Hashable, Observable{
+struct Pals: Hashable {
     
     var name: String
     var icon: Image
@@ -19,6 +19,7 @@ struct Pals: Hashable, Observable{
     var food: Int
     var foodimage: [Image]
     var partnerSkill: String
+    var partnerSkillDescription: String
     var worksuitabilty: [String: Int]
     
     func hash(into hasher: inout Hasher) {
@@ -53,6 +54,13 @@ struct workSuitability{
     var level: Int
 }
 
+class PalsWrapper: ObservableObject {
+    @Published var pals: Pals
+    
+    init(pals: Pals) {
+        self.pals = pals
+    }
+}
 
 class PalsManager: ObservableObject{
     @Published var palsManager: [Pals]
@@ -66,11 +74,11 @@ class PalsManager: ObservableObject{
         
 
         self.palsManager = [
-            Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: foodImages, partnerSkill: "Fluffy Shield", worksuitabilty: ["Handiwork": 1]),
-            Pals(name: "Cattiva", icon: Image("Cattiva"), title: "The Cat's Pajamas", number: "#002", element: ["Neutral"], drops: ["Red Berries"], food: 2, foodimage: foodImages, partnerSkill: "Cat Helper", worksuitabilty: ["Handiwork": 1,"Gathering":1,"Mining":1,"Transporting":1]),
-            Pals(name: "Chikipi", icon: Image("Chikipi"), title: "Plumb & Juicy", number: "#003", element: ["Neutral"], drops: ["Egg", "Chikipi Poultry"], food: 1, foodimage: foodImages, partnerSkill: "Egg Layer", worksuitabilty: ["Gathering": 1, "Farming":1]),
-            Pals(name: "Lifmunk", icon: Image("Lifmunk"), title: "Coward of the Steppe", number: "#004", element: ["Grass"], drops: ["Berry Seeds", "Low Grade Medical Supplies"], food: 1, foodimage: foodImages, partnerSkill: "Lifmunk Recoil", worksuitabilty: ["Planting": 1, "Handiwork": 1,"Gathering":1,"Lumbering": 1, "Medicine Production": 1]),
-            Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire", "Water"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: foodImages, partnerSkill: "Huggy Fire", worksuitabilty: ["Kindling": 1])
+            Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: foodImages, partnerSkill: "Fluffy Shield", partnerSkillDescription: "When activated, equips to the player and becomes a shield. Sometimes drops Wool when assigned to Ranch.", worksuitabilty: ["Handiwork": 1, "Transporting": 1, "Farming": 1]),
+            Pals(name: "Cattiva", icon: Image("Cattiva"), title: "The Cat's Pajamas", number: "#002", element: ["Neutral"], drops: ["Red Berries"], food: 2, foodimage: foodImages, partnerSkill: "Cat Helper", partnerSkillDescription: "While in team, Cattiva helps carry supplies, increasing the player's max carrying capacity.", worksuitabilty: ["Handiwork": 1,"Gathering":1,"Mining":1,"Transporting":1]),
+            Pals(name: "Chikipi", icon: Image("Chikipi"), title: "Plumb & Juicy", number: "#003", element: ["Neutral"], drops: ["Egg", "Chikipi Poultry"], food: 1, foodimage: foodImages, partnerSkill: "Egg Layer", partnerSkillDescription: "Sometimes lays an Egg when assigned to Ranch.", worksuitabilty: ["Gathering": 1, "Farming":1]),
+            Pals(name: "Lifmunk", icon: Image("Lifmunk"), title: "Coward of the Steppe", number: "#004", element: ["Grass"], drops: ["Berry Seeds", "Medical Supplies(L)"], food: 1, foodimage: foodImages, partnerSkill: "Lifmunk Recoil", partnerSkillDescription: "When activated, leaps into the player's head and uses a submachine gun to follows up player attacks.", worksuitabilty: ["Planting": 1, "Handiwork": 1,"Gathering":1,"Lumbering": 1, "Medicine Production": 1]),
+            Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire", "Water"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: foodImages, partnerSkill: "Huggy Fire", partnerSkillDescription: "When activated, leaps into the player's head and uses a submachine gun to follows up player attacks.", worksuitabilty: ["Kindling": 1])
         ]
     }
     func elementIcons(element: String) -> Image{
@@ -118,7 +126,7 @@ class PalsManager: ObservableObject{
             return Image("Medicine_Production_Icon")
         case "Cooling":
             return Image("\(work)_Icon")
-        case "Transorting":
+        case "Transporting":
             return Image("\(work)_Icon")
         case "Farming":
             return Image("\(work)_Icon")
@@ -129,8 +137,8 @@ class PalsManager: ObservableObject{
         }
     }
     
-    func colorForElement<T: Equatable>(_ element: T, inArray array: [T]) -> Color {
-        if array.contains(element) {
+    func colorForElement(workname: String, worklist: [String: Int]) -> Color {
+        if worklist.keys.contains(workname) {
             // Return a specific color when the element is found in the array
             return .black // Change this to the desired color
         } else {
@@ -138,5 +146,14 @@ class PalsManager: ObservableObject{
             return .white // Change this to the desired color
         }
     }
+    
+    func numberForElement(workname: String, worklist: [String: Int]) -> Int {
+        if let value = worklist[workname] {
+            return value
+        } else {
+            return 0
+        }
+    }
+
     
 }

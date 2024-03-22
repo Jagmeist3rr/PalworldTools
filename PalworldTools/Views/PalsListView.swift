@@ -26,7 +26,6 @@ struct PalsList: View {
                                 .frame(width: 50, height: 50)
                             Spacer()
                         }
-                        //.frame(maxWidth: .infinity)
                         .listRowBackground(Color.white)
 
                         HStack {
