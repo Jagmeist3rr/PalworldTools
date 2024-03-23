@@ -30,14 +30,22 @@ struct MatsView: View {
             Divider() // Add a divider for separation
             
             VStack(alignment: .leading, spacing: 10) {
-                Text("Weight: \(roundedWeight)")
-                Text("Buy Price: \(item.fullPage.buyPrice)")
-                Text("Sell Price: \(item.fullPage.sellPrice)")
-                Text("How to Obtain:") // Add your logic to display how to obtain information
+
+
+                Text(item.fullPage.itemDescription)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                Divider()
+                VStack(alignment: .leading){
+                    Text("Weight: \(roundedWeight)")
+                    Text("Buy Price: \(item.fullPage.buyPrice)")
+                    Text("Sell Price: \(item.fullPage.sellPrice)")
+                }
+
             }
             .padding()
-            
-            Spacer() // Add spacer to push content to the top
+            Spacer()
         }
         .background(Color(red: 196/255, green: 195/255, blue: 212/255))
         .navigationBarTitle("", displayMode: .inline) // Clear the navigation bar title
@@ -47,7 +55,7 @@ struct MatsView: View {
 
 struct ItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        MatsView(item: materialsList(name: "Gold Coin", image: Image("Gold_Coin_icon"), fullPage: materialsStruct(name: "Gold Coin", icon: Image("Gold_Coin_icon"), weight: 0, buyPrice: 0, sellPrice: 0, sources: ["Pals", "Trading"])))
+        MatsView(item: materialsList(name: "Gold Coin", image: Image("Gold_Coin_icon"), fullPage: materialsStruct(name: "Gold Coin", icon: Image("Gold_Coin_icon"), weight: 0, buyPrice: 0, sellPrice: 0, sources: ["Pals", "Trading"], itemDescription: "Test Description")))
             .environmentObject(MaterialsListManager())
     }
 }
