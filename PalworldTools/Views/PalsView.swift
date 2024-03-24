@@ -80,7 +80,6 @@ struct PalsView: View {
                                         .foregroundStyle(.white)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
-                                //.frame(maxWidth: 150, alignment: .top)
                             }
                             .padding(.vertical, 1)
                         }
