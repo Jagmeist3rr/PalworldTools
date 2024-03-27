@@ -23,6 +23,11 @@ struct ContentView: View {
                                 Image(systemName: "wrench.and.screwdriver.fill")
                                 Text("Pals")
                             }
+                        SkillView()
+                            .tabItem {
+                                Image(systemName: "wrench.and.screwdriver.fill")
+                                Text("Skills")
+                            }
                         MiscView()
                             .tag(2)
                             .tabItem {

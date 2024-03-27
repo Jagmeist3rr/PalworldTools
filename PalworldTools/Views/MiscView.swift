@@ -26,22 +26,44 @@ struct MiscView: View {
             ZStack {
                 Color(hex: "#8f8da6")
                     .edgesIgnoringSafeArea(.all)
-                
-                List {
-                    ForEach(navigationLinks, id: \.0) { link in
-                        HStack {
-                            NavigationLink(link.0, destination: link.1)
+                VStack {
+                    //Spacer()
+                    HStack {
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            NavigationLink(destination: MaterialsView()) {
+                                Text("Items")
+                                    .frame(width: 80, height: 80) // Set the desired width and height
+                            }
                         }
-                        .listRowBackground(Color.white)
+                        .buttonStyle(BorderedButtonStyle())
+                        .padding(.leading,40)
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        Spacer()
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            
+                            NavigationLink(destination: defenseBuildingView(buildingManager: Binding(get: { selectedBuildingManager ?? defenseBuildingsManager }, set: { selectedBuildingManager = $0 }),selectedOption: $selectedOption)) {
+                                Text("Buildings")
+                                    .frame(width: 80, height: 80) // Set the desired width and height
+                            }
+                        
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        .padding(.trailing,50)
+
                     }
-                    
+                    .foregroundColor(.black)
+                    .padding(.top, 100)
+                    Spacer()
                 }
-                .cornerRadius(25)
-                .foregroundColor(.black)
             }
             .toolbarBackground(.hidden, for: .navigationBar)
-            .navigationBarTitle("Pals", displayMode: .inline)
             .navigationBarTitleDisplayMode(.automatic)
+            .navigationTitle("Items")
 
         }
     }

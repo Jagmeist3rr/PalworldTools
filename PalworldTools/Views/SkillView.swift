@@ -19,19 +19,46 @@ struct SkillView: View {
         UITabBar.appearance().backgroundColor = tabBarColor
     }
     var body: some View {
-        VStack {
-            Text("Test")
-            TabView{
-                PalSkills()
-                    .tag(0)
-                    .foregroundColor(.black)
-                    .tabItem {
-                        Image(systemName: "wrench.and.screwdriver.fill")
-                        Text("Passive Skills")
+        NavigationView {
+            ZStack {
+                Color(hex: "#8f8da6").edgesIgnoringSafeArea(.all)
+                VStack {
+                    //Spacer()
+                    HStack {
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            NavigationLink(destination: PalSkills()) {
+                                Text("Pal Skills")
+                                    .frame(width: 80, height: 80) // Set the desired width and height
+                            }
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .padding(.leading,40)
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        Spacer()
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            
+                                Text("Coming Soon")
+                                .frame(width: 80, height: 80) // Set the desired width and height
+                        
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        .padding(.trailing,50)
+
                     }
-                
+                    .foregroundColor(.black)
+                    .padding(.top, 100)
+                    Spacer()
+                }
             }
+            .navigationTitle("Skills")
+
         }
+
     }
 }
 

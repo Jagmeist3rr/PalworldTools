@@ -35,6 +35,7 @@ struct PalsView: View {
                     Spacer()
                     Spacer()
                 }
+                .foregroundColor(.black)
                 .padding()
                 
                 Divider()
@@ -45,7 +46,9 @@ struct PalsView: View {
                         //VStack for elementarray and icon
                         Text("Elements: ")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        ForEach(item.element, id: \.self) { elementName in
+                        let sortedElements = item.element.sorted()
+
+                        ForEach(sortedElements, id: \.self) { elementName in
                             HStack {
                                 //Displays element names and icons in a list
                                 let icon = palsManager.elementIcons(element: elementName)
@@ -60,46 +63,38 @@ struct PalsView: View {
                                 }
                                 Text(elementName)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-
- 
                             }
                         }
                     }
-                    .frame(height: 150, alignment: .top)
+                    .foregroundColor(.black)
+                    .frame(height: 90, alignment: .top)
                     .padding(.leading)
-                    Spacer()
-                    VStack {
-                        Text("Drops:")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                        //Vstack for drops array
-                        ForEach(item.drops, id: \.self) { materialName in
-                            NavigationLink(destination: MatsByNameView(materialName: materialName)) {
-                                HStack {
-                                    Text(materialName)
-                                        .foregroundStyle(.white)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            }
-                            .padding(.vertical, 1)
-                        }
-
-                    }
-                    .padding(.leading)
-                    .frame(height: 150, alignment: .top)
-                    Spacer()
                 }
-                Divider()
-                HStack{
-                    //Hstack will be for amount of food
-                    Text("Food:")
-                        .frame(alignment: .leading)
-                        .padding(.leading)
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, maxHeight: 100)
                 Divider()
                 VStack {
+                    Text("Drops:")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    let sortedDrops = item.drops.sorted()
+
+                    //Vstack for drops array
+                    ForEach(sortedDrops, id: \.self) { materialName in
+                        NavigationLink(destination: MatsByNameView(materialName: materialName)) {
+                            HStack {
+                                Text(materialName)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                        }
+                        .padding(.vertical, 1)
+                    }
+                    .buttonStyle(BorderedButtonStyle())
+
+                }
+                .foregroundColor(.black)
+                .padding(.leading)
+                .padding(.trailing)
+                Divider()
+                VStack {
+  
                     HStack{
                         Text("Partner Skill:")
                             .padding(.leading)
@@ -116,6 +111,7 @@ struct PalsView: View {
                     Spacer()
                     
                 }
+                .foregroundColor(.black)
                 .frame(height: 100)
                 Divider()
                 test_view(item: item)
@@ -145,6 +141,7 @@ struct test_view: View {
                 Text("Work Suitability")
                     .frame(maxWidth: .infinity)
                 .padding(.bottom)
+                .foregroundColor(.black)
             }
             HStack {
                 VStack(alignment: .leading){
@@ -153,49 +150,67 @@ struct test_view: View {
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Kindling")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Kindling", worklist: item.worksuitabilty))")
-
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Kindling", worklist: item.worksuitabilty))
                     HStack{
                         Image("Planting_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Planting")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Planting", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Planting", worklist: item.worksuitabilty))
                     HStack{
                         Image("Handiwork_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Handiwork")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Handiwork", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Handiwork", worklist: item.worksuitabilty))
+                    
                     HStack{
                         Image("Lumbering_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Lumbering")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Lumbering", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Lumbering", worklist: item.worksuitabilty))
                     HStack{
                         Image("Medicine_Production_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Medicine")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Medicine Production", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Medicine Production", worklist: item.worksuitabilty))
                     HStack{
                         Image("Transporting_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Transporting")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Transporting", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Transporting", worklist: item.worksuitabilty))
                 }
                 .padding(.leading)
@@ -206,50 +221,66 @@ struct test_view: View {
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Watering")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Watering", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Watering", worklist: item.worksuitabilty))
-                    
                     HStack{
                         Image("Generating_Electricity_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Electricity")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Generate Electricty", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Generate Electricity", worklist: item.worksuitabilty))
                     HStack{
                         Image("Gathering_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Gathering")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Gathering", worklist: item.worksuitabilty))")
-                            .padding(.trailing, 60)
-
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Gathering", worklist: item.worksuitabilty))
                     HStack{
                         Image("Mining_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Mining")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Mining", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Mining", worklist: item.worksuitabilty))
                     HStack{
                         Image("Cooling_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Cooling")
+                        Spacer()
+                        Text("\(palsManager.numberForElement(workname: "Mining", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Cooling", worklist: item.worksuitabilty))
                     HStack{
                         Image("Farming_Icon")
                             .resizable()
                             .frame(width: 20, height: 20)
                         Text("Farming")
+                        Spacer()
                         Text("\(palsManager.numberForElement(workname: "Farming", worklist: item.worksuitabilty))")
+                            .padding(.trailing)
                     }
+                    .frame(maxWidth: .infinity)
                     .foregroundStyle(palsManager.colorForElement(workname: "Farming", worklist: item.worksuitabilty))
                 }
 
@@ -264,8 +295,8 @@ struct PalsView_Previews: PreviewProvider {
         let palsManager = PalsManager(palsManager: [])
         let item = Pals(name: "Lamball", icon: Image("Lamball"), title: "Big Floof", number: "#001", element: ["Neutral"], drops: ["Wool", "Lamball Mutton"], food: 2, foodimage: [], partnerSkill: "Fluffy Shield", partnerSkillDescription: "When activated, equips to the player and becomes a shield. Sometimes drops Wool when assigned to Ranch.", worksuitabilty: ["Handiwork": 1])
         
-        let item2 = Pals(name: "Foxparks", icon: Image("Foxparks"), title: "Revealer of Paths", number: "#005", element: ["Fire", "Water"], drops: ["Leather", "Flame Organ"], food: 2, foodimage: [], partnerSkill: "Huggy Fire", partnerSkillDescription: "When activated, leaps into the player's head and uses a submachine gun to follows up player attacks.",worksuitabilty: ["Kindling": 1])
-        return PalsView(item: item)
+        let item2 = Pals(name: "Jetragon", icon: Image("Jetragon"), title: "Legendary Celestial Dragon", number: "#111", element: ["Dragon"], drops: ["Pure Quartz","Polymer","Carbon Fiber","Diamond"], food: 9, foodimage: [], partnerSkill: "Aerial Missle", partnerSkillDescription: "Can be ridden as a flying mount. Can rapidly fire a missile launcher while mounted.", worksuitabilty: ["Gathering":3])
+        return PalsView(item: item2)
             .environmentObject(palsManager)
     }
 }
