@@ -23,7 +23,6 @@ struct SkillView: View {
             ZStack {
                 Color(hex: "#8f8da6").edgesIgnoringSafeArea(.all)
                 VStack {
-                    //Spacer()
                     HStack {
                         Button(action: {
                             // Action to perform when the button is tapped
@@ -41,7 +40,35 @@ struct SkillView: View {
                             // Action to perform when the button is tapped
                         }) {
                             
-                                Text("Coming Soon")
+                                Text("Coming Soon, Active Skill")
+                                .frame(width: 80, height: 80) // Set the desired width and height
+                        
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        .padding(.trailing,50)
+
+                    }
+                    .foregroundColor(.black)
+                    .padding(.top, 100)
+                    HStack {
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+            
+                                Text("Rideable Pals")
+                                    .frame(width: 80, height: 80) // Set the desired width and height
+
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .padding(.leading,40)
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        Spacer()
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            
+                                Text("Coming Soon, Breeding")
                                 .frame(width: 80, height: 80) // Set the desired width and height
                         
                         }

@@ -58,6 +58,35 @@ struct MiscView: View {
                     }
                     .foregroundColor(.black)
                     .padding(.top, 100)
+                    HStack {
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            NavigationLink(destination: PalSphereListView()) {
+                                
+                                Text("Coming Soon, Spheres")
+                                    .frame(width: 80, height: 80) // Set the desired width and height
+                            }
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .padding(.leading,40)
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        Spacer()
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                        
+                                Text("Coming Soon, Weapons")
+                                    .frame(width: 80, height: 80) // Set the desired width and height
+                        
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .scaleEffect(1.5) // Adjust the scale factor as needed to make the button larger
+                        .padding(.trailing,50)
+
+                    }
+                    .foregroundColor(.black)
+                    .padding(.top, 100)
                     Spacer()
                 }
             }
